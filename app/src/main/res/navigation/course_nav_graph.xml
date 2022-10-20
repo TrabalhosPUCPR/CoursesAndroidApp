@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/course_nav_graph"
+    app:startDestination="@id/coverFragment">
+    <fragment
+        android:id="@+id/coverFragment"
+        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.CoverFragment"
+        android:label="CoverFragment"
+        tools:layout="@layout/fragment_cover">
+        <action
+            android:id="@+id/action_coverFragment_to_pageFragment"
+            app:destination="@id/pageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/pageFragment"
+        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.PageFragment"
+        android:label="fragment_page"
+        tools:layout="@layout/fragment_page" >
+        <action
+            android:id="@+id/action_pageFragment_self"
+            app:destination="@id/pageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_pageFragment_to_courseEndFragment"
+            app:destination="@id/courseEndFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_pageFragment_to_coverFragment2"
+            app:destination="@id/coverFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseEndFragment"
+        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.CourseEndFragment"
+        android:label="fragment_course_end"
+        tools:layout="@layout/fragment_course_end" >
+        <action
+            android:id="@+id/action_courseEndFragment_to_coverFragment"
+            app:destination="@id/coverFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_courseEndFragment_to_pageFragment"
+            app:destination="@id/pageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+</navigation>

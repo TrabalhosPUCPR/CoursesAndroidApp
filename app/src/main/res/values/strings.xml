@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ProjetoProgramacao</string>
+    <string name="appTitle">Title</string>
+    <string name="option1_optionActivity">All available courses</string>
+    <string name="option2_optionActivity">Activities to practice</string>
+    <string name="option3_optionActivity">Sandbox, do whatever you like!</string>
+    <string name="btn_start_learning_optMenu">Start Learning!</string>
+    <string name="btn_continue_learning_optMenu">Continue Learning!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

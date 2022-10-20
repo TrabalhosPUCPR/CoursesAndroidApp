@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/bottomMenuBar_back"
+        android:title="Back"
+        android:icon="@drawable/ic_action_back_arrow"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/bottomMenuBar_foward"
+        android:title="Next"
+        android:icon="@drawable/ic_action_foward_arrow"
+        app:showAsAction="ifRoom"/>
+</menu>
