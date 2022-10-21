@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao;
+package com.bradesco.projetoprogramacao.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.bradesco.projetoprogramacao.Controller.OptionsActivity;
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.Model.Database.CoursesDAO;
+import com.bradesco.projetoprogramacao.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -23,9 +23,18 @@ public class OptionsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_person);
 
-        Button listCourses = findViewById(R.id.btn_option1_optionsMenu);
-        listCourses.setOnClickListener(view -> {
+        Button button = findViewById(R.id.btn_option1_optionsMenu);
+        button.setOnClickListener(view -> {
             Intent intent = new Intent(this, CoursesList.class);
+            startActivity(intent);
+        });
+        button = findViewById(R.id.btn_option2_optionsMenu);
+        button.setOnClickListener(view -> {
+            // TODO: 10/21/2022 activities 
+        });
+        button = findViewById(R.id.btn_option3_optionsMenu);
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SandboxActivity.class);
             startActivity(intent);
         });
     }

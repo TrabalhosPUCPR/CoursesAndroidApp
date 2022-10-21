@@ -15,7 +15,7 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 
 public class CourseActivity extends AppCompatActivity {
 
-    protected static int currentChapter, currentPage, courseIndex;
+    protected static int currentChapter, currentPage, courseIndex, currentQuestion;
     protected static CourseModel course;
     protected static BottomAppBar bottomAppBar;
 
@@ -33,6 +33,7 @@ public class CourseActivity extends AppCompatActivity {
         courseIndex = getIntent().getIntExtra("index", -1);
         course = CourseListManager.getInstance().get(courseIndex);
         currentChapter = 0;
-        currentPage = 0;
+        currentPage= 0;
+        currentQuestion = 0;
     }
 }

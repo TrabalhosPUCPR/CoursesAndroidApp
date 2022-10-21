@@ -1,14 +1,10 @@
 package com.bradesco.projetoprogramacao.Controller.CourseFragments;
 
-import android.app.ActivityOptions;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ActivityNavigator;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +14,6 @@ import android.widget.TextView;
 import com.bradesco.projetoprogramacao.Model.Course.Page;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentPageBinding;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PageFragment extends Fragment {
 
@@ -85,7 +79,11 @@ public class PageFragment extends Fragment {
             if(CourseActivity.course.getChapters().size() == CourseActivity.currentChapter){
                 // end course
                 CourseActivity.currentChapter = 0;
-                Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_courseEndFragment);
+                if(CourseActivity.course.getEndingQuestions().isEmpty()){
+                    Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_courseEndFragment);
+                }else{
+                    Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_questionFragment);
+                }
                 return;
             }
         }

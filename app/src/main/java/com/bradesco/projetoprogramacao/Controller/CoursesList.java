@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import com.bradesco.projetoprogramacao.Controller.CourseFragments.CourseActivity;
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.Model.Course.CourseModel;
 import com.bradesco.projetoprogramacao.R;
@@ -45,7 +42,7 @@ public class CoursesList extends AppCompatActivity {
                 coursesAdapter.notifyItemChanged(index);
             }
         });
-        createTodoRcvView();
+        createRcvView();
     }
 
     @Override
@@ -54,7 +51,7 @@ public class CoursesList extends AppCompatActivity {
         return false;
     }
 
-    void createTodoRcvView(){
+    void createRcvView(){
         rcvCourses = findViewById(R.id.rcv_courses);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(RecyclerView.VERTICAL);

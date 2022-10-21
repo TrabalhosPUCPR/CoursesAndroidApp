@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/pageType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chapter "
@@ -28,6 +29,7 @@
                 android:textSize="40sp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/chapterTitleContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -67,11 +69,11 @@
         </ScrollView>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/chAndPgLabel_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="55dp">
+        android:layout_gravity="bottom">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

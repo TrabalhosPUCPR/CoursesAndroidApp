@@ -50,9 +50,6 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
             holder.completeCheckMark.setImageResource(R.drawable.ic_action_check);
         }
         holder.description.setText(course.getIntroduction());
-        holder.play.setOnClickListener(view -> {
-            // TODO : open course
-        });
         if(course.isExpanded()){
             holder.expandableArea.setVisibility(View.VISIBLE);
         }else{
