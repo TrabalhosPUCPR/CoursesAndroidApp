@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Controller.CourseFragments.CourseActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,13 +24,11 @@
             android:id="@+id/answerResponseText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Good Job!"
             android:layout_marginTop="40dp"
-            android:textSize="35dp"
+            android:textSize="35sp"
             android:gravity="center"
             android:visibility="gone"/>
     </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,8 +38,7 @@
             android:id="@+id/questions_answer_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Answer"/>
+            android:layout_gravity="end"
+            android:text="@string/Answer"/>
     </FrameLayout>
-
 </FrameLayout>

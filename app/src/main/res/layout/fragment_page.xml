@@ -10,24 +10,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="20dp">
-        <LinearLayout
-            android:id="@+id/showBigChapterNumberLayout"
+        <TextView
+            android:id="@+id/ChapterNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/pageType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chapter "
-                android:textSize="40sp"/>
-            <TextView
-                android:id="@+id/bigChapterNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="X"
-                android:textSize="40sp"/>
-        </LinearLayout>
+            android:text="@string/ChapterN"
+            android:textSize="40sp"/>
         <LinearLayout
             android:id="@+id/chapterTitleContainer"
             android:layout_width="match_parent"
@@ -52,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:text="Course Title"
                 android:textAlignment="center"/>
-
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -65,43 +52,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center" />
-
         </ScrollView>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/chAndPgLabel_container"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/ChPgNumber"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_gravity="end">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:text="Ch. "/>
-            <TextView
-                android:id="@+id/chapterNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:text="X"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:text="   |   Pg. "/>
-            <TextView
-                android:id="@+id/pageNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:text="X"/>
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_gravity="bottom|end"
+        android:text="@string/ChPgNumber"
+        android:layout_margin="15dp"/>
 
 </FrameLayout>

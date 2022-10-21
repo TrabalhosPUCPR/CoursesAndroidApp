@@ -11,5 +11,12 @@
     <string name="Continue">Continue</string>
     <string name="congratulationsMessage">Good Job!</string>
     <string name="incorrectMessage">Incorrect!\nCorrect answer:\n%s</string>
-    <string name="Question">\"Question \"</string>
+    <string name="QuestionN">Question %d</string>
+    <string name="ChapterN">Chapter %d</string>
+    <string name="Sandbox">Sandbox</string>
+    <string name="Answer">Answer</string>
+    <string name="ChapterTitle_CourseSubtitle">%s - %s</string>
+    <string name="ChPgNumber">Ch. %d   |   Pg. %d</string>
+    <string name="completed">Completed!</string>
+    <string name="Return">Return</string>
 </resources>

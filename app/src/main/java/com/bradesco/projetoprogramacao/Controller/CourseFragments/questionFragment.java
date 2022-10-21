@@ -2,6 +2,7 @@ package com.bradesco.projetoprogramacao.Controller.CourseFragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -14,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.bradesco.projetoprogramacao.Model.QuestionModel;
+import com.bradesco.projetoprogramacao.Model.Question;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentQuestionBinding;
 
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 
 public class questionFragment extends Fragment{
 
-    private FragmentQuestionBinding binding;
     private Button answerButton;
     private boolean answered;
 
@@ -32,23 +32,21 @@ public class questionFragment extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentQuestionBinding.inflate(getLayoutInflater());
+        com.bradesco.projetoprogramacao.databinding.FragmentQuestionBinding binding = FragmentQuestionBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
 
-        TextView text = root.findViewById(R.id.pageType);
-        text.setText(R.string.Question);
-        text = root.findViewById(R.id.bigChapterNumber);
-        text.setText(String.valueOf(CourseActivity.currentQuestion + 1));
+        TextView text = root.findViewById(R.id.ChapterNumber);
+        text.setText(String.format(getResources().getString(R.string.QuestionN), CourseActivity.currentQuestion + 1));
 
         LinearLayout contentArea = root.findViewById(R.id.chapterTitleContainer);
         contentArea.setVisibility(View.GONE);
-        contentArea = root.findViewById(R.id.chAndPgLabel_container);
-        contentArea.setVisibility(View.GONE);
+        TextView chPhNumber = root.findViewById(R.id.ChPgNumber);
+        chPhNumber.setVisibility(View.GONE);
 
         contentArea = root.findViewById(R.id.contentArea);
-        QuestionModel question = CourseActivity.course.getEndingQuestions().get(CourseActivity.currentQuestion);
+        Question question = CourseActivity.course.getEndingQuestions().get(CourseActivity.currentQuestion);
         TextView content = new TextView(getContext());
         content.setText(question.getQuestionArea().getParagraphs());
         contentArea.addView(content);
@@ -84,13 +82,13 @@ public class questionFragment extends Fragment{
         return root;
     }
 
-    private void answer(int answer, QuestionModel questionModel, View root, ArrayList<RadioButton> radioButtons, RadioGroup group){
+    private void answer(int answer, Question question, View root, ArrayList<RadioButton> radioButtons, RadioGroup group){
         TextView check = root.findViewById(R.id.answerResponseText);
         check.setVisibility(View.VISIBLE);
-        if(questionModel.answer(answer)){
+        if(question.answer(answer)){
             check.setText(getActivity().getResources().getString(R.string.congratulationsMessage));
         }else {
-            check.setText(String.format(getActivity().getResources().getString(R.string.incorrectMessage), questionModel.getCorrectAnswer()));
+            check.setText(String.format(getActivity().getResources().getString(R.string.incorrectMessage), question.getCorrectAnswer()));
         }
         for(RadioButton rb : radioButtons){
             rb.setEnabled(false);
@@ -99,6 +97,6 @@ public class questionFragment extends Fragment{
         group.setClickable(false);
         answerButton.setText(getActivity().getResources().getString(R.string.Continue));
         radioButtons.get(answer).setBackgroundColor(getResources().getColor(R.color.wrongAnswer));
-        radioButtons.get(questionModel.getCorrectAnswerIndex()).setBackgroundColor(getResources().getColor(R.color.correctAnswer));
+        radioButtons.get(question.getCorrectAnswerIndex()).setBackgroundColor(getResources().getColor(R.color.correctAnswer));
     }
 }

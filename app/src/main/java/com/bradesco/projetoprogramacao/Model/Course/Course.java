@@ -1,22 +1,22 @@
 package com.bradesco.projetoprogramacao.Model.Course;
 
-import com.bradesco.projetoprogramacao.Model.QuestionModel;
+import com.bradesco.projetoprogramacao.Model.Question;
 
 import java.util.ArrayList;
 
-public class CourseModel {
+public class Course {
     private int id;
     private String title, subTitle, introduction;
     private ArrayList<Chapters> chapters;
-    private ArrayList<QuestionModel> endingQuestions;
+    private ArrayList<Question> endingQuestions;
     private int difficulty;
     private boolean completed, expanded;
 
-    public CourseModel(){
+    public Course(){
         this.chapters = new ArrayList<>();
         this.endingQuestions = new ArrayList<>();
     }
-    public CourseModel(String title, String subTitle, String introduction, int difficulty) {
+    public Course(String title, String subTitle, String introduction, int difficulty) {
         this.title = title;
         this.subTitle = subTitle;
         this.difficulty = difficulty;
@@ -95,22 +95,22 @@ public class CourseModel {
         this.chapters.add(chapter);
     }
 
-    public void addEndingQuestion(QuestionModel questionModel){
-        this.endingQuestions.add(questionModel);
+    public void addEndingQuestion(Question question){
+        this.endingQuestions.add(question);
     }
 
-    public ArrayList<QuestionModel> getEndingQuestions() {
+    public ArrayList<Question> getEndingQuestions() {
         return endingQuestions;
     }
 
-    public void setEndingQuestions(ArrayList<QuestionModel> endingQuestions) {
+    public void setEndingQuestions(ArrayList<Question> endingQuestions) {
         this.endingQuestions = endingQuestions;
     }
 
     // DEFAULT COURSES
     // DEFAULT PAGES
-    public static CourseModel createDefault_DataTypes(){
-        CourseModel dataTypes = new CourseModel("Data Types", "Python basics", "This course we will take a look at the available data types in Python", 0);
+    public static Course createDefault_DataTypes(){
+        Course dataTypes = new Course("Data Types", "Python basics", "This course we will take a look at the available data types in Python", 0);
         ArrayList<Page> pages = new ArrayList<>();
         ArrayList<Chapters> chapters = new ArrayList<>();
 
@@ -132,14 +132,14 @@ public class CourseModel {
         // set chapters to course
         dataTypes.setChapters(chapters);
 
-        ArrayList<QuestionModel> questions = new ArrayList<>();
-        questions.add(new QuestionModel(new Page("The data '1.8' is of which type?")));
+        ArrayList<Question> questions = new ArrayList<>();
+        questions.add(new Question(new Page("The data '1.8' is of which type?")));
         questions.get(0).addAnswer("Integer");
         questions.get(0).addAnswer("String");
         questions.get(0).addCorrectAnswer("Float");
         questions.get(0).addAnswer("Boolean");
 
-        questions.add(new QuestionModel(new Page("The data 'potato' is of which type?")));
+        questions.add(new Question(new Page("The data 'potato' is of which type?")));
         questions.get(1).addAnswer("Integer");
         questions.get(1).addCorrectAnswer("String");
         questions.get(1).addAnswer("Float");

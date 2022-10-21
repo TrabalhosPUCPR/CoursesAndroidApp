@@ -24,7 +24,7 @@ public class SandboxActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_back_arrow);
-        getSupportActionBar().setTitle("Sandbox");
+        getSupportActionBar().setTitle(R.string.Sandbox);
 
         EditText codeArea = findViewById(R.id.editText_code_area);
         TextView consoleText = findViewById(R.id.console_text);
@@ -36,7 +36,7 @@ public class SandboxActivity extends AppCompatActivity {
             // TODO: 10/20/2022 run code on edit text
             String code = codeArea.getText().toString();
             int height = 50;
-            consoleArea.setLayoutParams(new LinearLayout.LayoutParams(consoleArea.getWidth(), height));
+            //consoleArea.setLayoutParams(new LinearLayout.LayoutParams(consoleArea.getWidth(), height));
         });
         stopFab.setOnClickListener(view -> {
             // TODO: 10/20/2022 stop running code

@@ -10,14 +10,14 @@ import androidx.annotation.Nullable;
 
 import com.bradesco.projetoprogramacao.Model.Course.Chapters;
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
-import com.bradesco.projetoprogramacao.Model.Course.CourseModel;
+import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.Model.Course.Page;
-import com.bradesco.projetoprogramacao.Model.QuestionModel;
+import com.bradesco.projetoprogramacao.Model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
+public class CoursesDAO extends SQLiteOpenHelper implements DAO<Course> {
 
     private static final int DB_VERSION = 1;
 
@@ -111,12 +111,12 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
         values.put(DIFFICULTIES_NAME, "Advanced");
         sqLiteDatabase.insert(TABLE_DIFFICULTIES, null, values);
 
-        for(CourseModel course : CourseListManager.createDefaultCourses()){
+        for(Course course : CourseListManager.createDefaultCourses()){
             add(course, sqLiteDatabase);
         }
     }
 
-    private void addChapters(CourseModel course, SQLiteDatabase sqLiteDatabase){
+    private void addChapters(Course course, SQLiteDatabase sqLiteDatabase){
         for(Chapters c : course.getChapters()){
             ContentValues values = new ContentValues();
             values.put(CHAPTERS_NAME, c.getTitle());
@@ -134,21 +134,21 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
         }
     }
 
-    private void addQuestions(CourseModel course, SQLiteDatabase sqLiteDatabase){
-        for(QuestionModel questionModel : course.getEndingQuestions()){
+    private void addQuestions(Course course, SQLiteDatabase sqLiteDatabase){
+        for(Question question : course.getEndingQuestions()){
             ContentValues values = new ContentValues();
-            values.put(PAGES_TEXT, questionModel.getQuestionArea().getParagraphs());
+            values.put(PAGES_TEXT, question.getQuestionArea().getParagraphs());
             long pageId = sqLiteDatabase.insert(TABLE_PAGES, null, values);
-            questionModel.getQuestionArea().setId((int) pageId);
+            question.getQuestionArea().setId((int) pageId);
 
             values = new ContentValues();
             values.put(QUESTIONS_PAGE_ID, (int) pageId);
-            values.put(QUESTIONS_CORRECT_INDEX, questionModel.getCorrectAnswerIndex());
+            values.put(QUESTIONS_CORRECT_INDEX, question.getCorrectAnswerIndex());
             values.put(QUESTION_COURSE_ID, course.getId());
             long questionId = sqLiteDatabase.insert(TABLE_QUESTIONS, null, values);
-            questionModel.setId((int) questionId);
+            question.setId((int) questionId);
 
-            for(String answer : questionModel.getAnswers()){
+            for(String answer : question.getAnswers()){
                 values = new ContentValues();
                 values.put(ANSWERS_TEXT, answer);
                 values.put(ANSWERS_QUESTION_ID, questionId);
@@ -162,12 +162,12 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
         // TODO: 10/20/2022
     }
     @Override
-    public boolean add(CourseModel courseModel){
+    public boolean add(Course course){
         SQLiteDatabase db = getWritableDatabase();
-        return add(courseModel, db);
+        return add(course, db);
     }
 
-    public boolean add(CourseModel course, SQLiteDatabase db) {
+    public boolean add(Course course, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
 
         values.put(COURSES_COL_TITLE, course.getTitle());
@@ -223,7 +223,7 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
     }
 
     @Override
-    public boolean edit(CourseModel course, int id) {
+    public boolean edit(Course course, int id) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -238,8 +238,8 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
     }
 
     @Override
-    public List<CourseModel> getList() {
-        ArrayList<CourseModel> list = new ArrayList<>();
+    public List<Course> getList() {
+        ArrayList<Course> list = new ArrayList<>();
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_COURSES, null);
@@ -253,14 +253,13 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
     }
 
     @Override
-    public CourseModel get(int id) {
+    public Course get(int id) {
         SQLiteDatabase db = getReadableDatabase();
-        CourseModel course = get(id, db);
-        return course;
+        return get(id, db);
     }
 
-    public CourseModel get(int id, SQLiteDatabase db){
-        CourseModel course = new CourseModel();
+    public Course get(int id, SQLiteDatabase db){
+        Course course = new Course();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_COURSES + " WHERE "+ COURSES_COL_ID + "=" + id + ";", null);
         if(c.moveToFirst()){
             course.setId(c.getInt(0));
@@ -297,7 +296,7 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
                         page = new Page(c4.getString(0));
                     }
                     c4.close();
-                    QuestionModel question = new QuestionModel(page);
+                    Question question = new Question(page);
                     question.setId(c2.getInt(0));
                     question.setCorrectAnswerIndex(c2.getInt(1));
                     Cursor c3 = db.rawQuery("SELECT * FROM " + TABLE_ANSWERS + " WHERE " + ANSWERS_QUESTION_ID + "=" + question.getId(), null);
@@ -316,18 +315,6 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
         return course;
     }
 
-    private Page getPage(int id){
-        SQLiteDatabase db = getReadableDatabase();
-        Page page = new Page();
-
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PAGES + " WHERE "+ PAGES_ID + "=" + id + ";", null);
-        if(c.moveToFirst()){
-            page.setId(c.getInt(0));
-            page.setParagraphs(c.getString(1));
-        }
-        return page;
-    }
-
     public String getDifficultiesName(int id){
         SQLiteDatabase db = getReadableDatabase();
         String name = "ERROR";
@@ -336,6 +323,7 @@ public class CoursesDAO extends SQLiteOpenHelper implements DAO<CourseModel> {
         if(c.moveToFirst()){
             name = c.getString(1);
         }
+        c.close();
         return name;
     }
 }

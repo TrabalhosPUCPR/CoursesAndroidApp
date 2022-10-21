@@ -2,6 +2,7 @@ package com.bradesco.projetoprogramacao.Controller.CourseFragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -17,16 +18,15 @@ import com.bradesco.projetoprogramacao.databinding.FragmentPageBinding;
 
 public class PageFragment extends Fragment {
 
-    private FragmentPageBinding binding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentPageBinding.inflate(getLayoutInflater());
+        com.bradesco.projetoprogramacao.databinding.FragmentPageBinding binding = FragmentPageBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
 
         Page page = CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getPages().get(CourseActivity.currentPage);
@@ -35,18 +35,15 @@ public class PageFragment extends Fragment {
         TextView courseTitle = root.findViewById(R.id.page_CourseTitle);
         LinearLayout contentArea = root.findViewById(R.id.contentArea);
 
-        TextView pageNumber = root.findViewById(R.id.pageNumber);
-        TextView chapterNumber = root.findViewById(R.id.chapterNumber);
-        pageNumber.setText(String.valueOf(CourseActivity.currentPage + 1));
-        chapterNumber.setText(String.valueOf(CourseActivity.currentChapter + 1));
+        TextView chPgNumber = root.findViewById(R.id.ChPgNumber);
+        chPgNumber.setText(String.format(getResources().getString(R.string.ChPgNumber), CourseActivity.currentChapter + 1, CourseActivity.currentPage + 1));
 
-        LinearLayout ch = root.findViewById(R.id.showBigChapterNumberLayout);
+        TextView chapterNumber = root.findViewById(R.id.ChapterNumber);
         if(CourseActivity.currentPage == 0){
-            ch.setVisibility(View.VISIBLE);
-            TextView number = root.findViewById(R.id.bigChapterNumber);
-            number.setText(String.valueOf(CourseActivity.currentChapter + 1));
+            chapterNumber.setVisibility(View.VISIBLE);
+            chapterNumber.setText(String.format(getResources().getString(R.string.ChapterN), CourseActivity.currentChapter + 1));
         }else{
-            ch.setVisibility(View.GONE);
+            chapterNumber.setVisibility(View.GONE);
         }
 
         chapterTitle.setText(CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getTitle());

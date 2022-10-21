@@ -1,14 +1,12 @@
 package com.bradesco.projetoprogramacao.Controller.CourseFragments;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
-import com.bradesco.projetoprogramacao.Model.Course.CourseModel;
+import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.ActivityCourseBinding;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -16,15 +14,13 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 public class CourseActivity extends AppCompatActivity {
 
     protected static int currentChapter, currentPage, courseIndex, currentQuestion;
-    protected static CourseModel course;
+    protected static Course course;
     protected static BottomAppBar bottomAppBar;
-
-    private ActivityCourseBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCourseBinding.inflate(getLayoutInflater());
+        com.bradesco.projetoprogramacao.databinding.ActivityCourseBinding binding = ActivityCourseBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         setContentView(root);
         bottomAppBar = root.findViewById(R.id.course_bottom_menuBar);

@@ -8,10 +8,10 @@ import com.bradesco.projetoprogramacao.Model.Database.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseListManager implements DAO<CourseModel> {
+public class CourseListManager implements DAO<Course> {
 
     private static final CourseListManager instance = new CourseListManager();
-    private List<CourseModel> courses = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
     private CoursesDAO dao;
 
     public static synchronized CourseListManager getInstance(){
@@ -20,22 +20,22 @@ public class CourseListManager implements DAO<CourseModel> {
 
     private CourseListManager(){}
 
-    public static ArrayList<CourseModel> createDefaultCourses(){
-        ArrayList<CourseModel> list = new ArrayList<>();
-        list.add(CourseModel.createDefault_DataTypes());
+    public static ArrayList<Course> createDefaultCourses(){
+        ArrayList<Course> list = new ArrayList<>();
+        list.add(Course.createDefault_DataTypes());
         return list;
     }
 
     public void loadDatabase(Context context){
         this.dao = new CoursesDAO(context);
-        List<CourseModel> list = this.dao.getList();
+        List<Course> list = this.dao.getList();
         if(list != null){
             this.courses = list;
         }
     }
 
     @Override
-    public boolean add(CourseModel object) {
+    public boolean add(Course object) {
         if(this.dao.add(object)){
             this.courses.add(object);
             return true;
@@ -62,7 +62,7 @@ public class CourseListManager implements DAO<CourseModel> {
     }
 
     @Override
-    public boolean edit(CourseModel object, int id) {
+    public boolean edit(Course object, int id) {
         if(this.dao.edit(object, this.courses.get(id).getId())){
             this.courses.set(id, object);
             return true;
@@ -71,18 +71,18 @@ public class CourseListManager implements DAO<CourseModel> {
     }
 
     @Override
-    public List<CourseModel> getList() {
+    public List<Course> getList() {
         return this.courses;
     }
 
     @Override
-    public CourseModel get(int id) {
+    public Course get(int id) {
         return this.courses.get(id);
     }
 
-    public ArrayList<CourseModel> getCompletedCourses(){
-        ArrayList<CourseModel> completed = new ArrayList<>();
-        for(CourseModel cm : this.courses){
+    public ArrayList<Course> getCompletedCourses(){
+        ArrayList<Course> completed = new ArrayList<>();
+        for(Course cm : this.courses){
             if(cm.isCompleted()){
                 completed.add(cm);
             }

@@ -4,13 +4,13 @@ import com.bradesco.projetoprogramacao.Model.Course.Page;
 
 import java.util.ArrayList;
 
-public class QuestionModel {
+public class Question {
     private int id;
     private Page questionArea;
     private ArrayList<String> answers;
     private int correctAnswerIndex;
 
-    public QuestionModel(Page questionArea) {
+    public Question(Page questionArea) {
         this.questionArea = questionArea;
         this.answers = new ArrayList<>();
     }
@@ -33,10 +33,6 @@ public class QuestionModel {
 
     public ArrayList<String> getAnswers() {
         return answers;
-    }
-
-    public String getAnswerWithLabel(int index){
-        return ((char)(97 + index)) + ". " + answers.get(index);
     }
 
     public ArrayList<String> getAnswersWithLabel(){

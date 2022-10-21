@@ -9,14 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bradesco.projetoprogramacao.Controller.CourseFragments.CourseActivity;
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
-import com.bradesco.projetoprogramacao.Model.Course.CourseModel;
+import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,10 +24,10 @@ import java.util.List;
 public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.CoursesHolder> {
 
     Context context;
-    List<CourseModel> courses;
+    List<Course> courses;
     ActivityResultLauncher<Intent> resultOpen;
 
-    public CoursesListAdapter(List<CourseModel> courses, Context context, ActivityResultLauncher<Intent> resultOpen) {
+    public CoursesListAdapter(List<Course> courses, Context context, ActivityResultLauncher<Intent> resultOpen) {
         this.context = context;
         this.courses = courses;
         this.resultOpen = resultOpen;
@@ -43,7 +42,7 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CoursesHolder holder, int position) {
-        CourseModel course = courses.get(position);
+        Course course = courses.get(position);
         holder.title.setText(course.getTitle());
         holder.subtitle.setText(course.getSubTitle());
         if(course.isCompleted()){
@@ -72,7 +71,7 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
         return this.courses.size();
     }
 
-    public class CoursesHolder extends RecyclerView.ViewHolder {
+    public static class CoursesHolder extends RecyclerView.ViewHolder {
 
         TextView title, subtitle, description, difficulty;
         FloatingActionButton play;

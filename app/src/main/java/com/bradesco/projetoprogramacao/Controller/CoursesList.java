@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
-import com.bradesco.projetoprogramacao.Model.Course.CourseModel;
+import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.View.CoursesListAdapter;
 
@@ -36,7 +36,7 @@ public class CoursesList extends AppCompatActivity {
         resultOpenCourse = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if(result.getResultCode() == RESULT_OK) {
                 int index = result.getData().getIntExtra("index", -1);
-                CourseModel course = CourseListManager.getInstance().get(index);
+                Course course = CourseListManager.getInstance().get(index);
                 course.setCompleted(true);
                 CourseListManager.getInstance().edit(course, index);
                 coursesAdapter.notifyItemChanged(index);
