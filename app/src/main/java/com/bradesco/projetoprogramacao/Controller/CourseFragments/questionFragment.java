@@ -15,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.bradesco.projetoprogramacao.Model.Question;
+import com.bradesco.projetoprogramacao.Model.Course.Question;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentQuestionBinding;
 

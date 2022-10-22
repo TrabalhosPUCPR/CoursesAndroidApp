@@ -1,7 +1,5 @@
 package com.bradesco.projetoprogramacao.Model.Course;
 
-import java.util.ArrayList;
-
 public class Page {
     private int id;
     private String paragraphs;

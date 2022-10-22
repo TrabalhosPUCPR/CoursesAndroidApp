@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Model;
+package com.bradesco.projetoprogramacao.Model.Course;
 
 import com.bradesco.projetoprogramacao.Model.Course.Page;
 

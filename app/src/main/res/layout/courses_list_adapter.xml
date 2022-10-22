@@ -39,7 +39,7 @@
                 android:text="Subtitle Placeholder"
                 android:textSize="11sp"
                 android:ellipsize="end"
-                android:maxEms="8"
+                android:maxEms="17"
                 android:maxLines="1"/>
         </LinearLayout>
         <ImageView

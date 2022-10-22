@@ -12,7 +12,7 @@ import com.bradesco.projetoprogramacao.Model.Course.Chapters;
 import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.Model.Course.Page;
-import com.bradesco.projetoprogramacao.Model.Question;
+import com.bradesco.projetoprogramacao.Model.Course.Question;
 
 import java.util.ArrayList;
 import java.util.List;

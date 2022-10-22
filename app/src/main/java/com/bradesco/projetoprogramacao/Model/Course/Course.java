@@ -1,7 +1,5 @@
 package com.bradesco.projetoprogramacao.Model.Course;
 
-import com.bradesco.projetoprogramacao.Model.Question;
-
 import java.util.ArrayList;
 
 public class Course {
@@ -107,8 +105,15 @@ public class Course {
         this.endingQuestions = endingQuestions;
     }
 
+    public static ArrayList<Course> getDefaultCourses(){
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(createDefault_DataTypes());
+        courses.add(createDefault_Loops());
+
+        return courses;
+    }
+
     // DEFAULT COURSES
-    // DEFAULT PAGES
     public static Course createDefault_DataTypes(){
         Course dataTypes = new Course("Data Types", "Python basics", "This course we will take a look at the available data types in Python", 0);
         ArrayList<Page> pages = new ArrayList<>();
@@ -147,5 +152,55 @@ public class Course {
 
         dataTypes.setEndingQuestions(questions);
         return dataTypes;
+    }
+
+    public static Course createDefault_Loops(){
+        Course loops = new Course("Loops", "Simplifing Code with Loops", "In this course, you will learn why and how to loop in python", 1);
+
+        ArrayList<Chapters> chapters = new ArrayList<>();
+        chapters.add(new Chapters("Introduction", "Looping  in python"));
+        chapters.add(new Chapters("While Loops", "Imperative Loops: while command"));
+        chapters.add(new Chapters("For loops", "Imperative Loops: for command"));
+        chapters.add(new Chapters("Recursive functions", "Recursive loops"));
+
+        ArrayList<Page> pages = new ArrayList<>();
+        pages.add(new Page("Looping is a extremely common act when programming an application, it is used to repeat many commands many times, so it can be used to make things a lot easier"));
+        pages.add(new Page("There are plenty of ways to loop, but in general, there are two types: Imperative and Recursive loops"));
+        pages.add(new Page("Imperative loops consist on using commands like 'for' and 'while' to iterate over a set of commands many times!"));
+        pages.add(new Page("Recursive loops consists on calling the same function over and over again!"));
+        chapters.get(0).setPages(pages);
+
+        pages = new ArrayList<>();
+        pages.add(new Page("A while loop runs a block of code multiple times until its condition fails, so a while loop with a condition of X < 5, and you add X by 1 inside the loop, the code will run 5 times, up until X is higher or equal than 5!"));
+        chapters.get(1).setPages(pages);
+
+        pages = new ArrayList<>();
+        pages.add(new Page("A for loop is commonly used to iterate over a list of objects and run a block of code on top of it, this type of for loop can also be called 'enhanced for'"));
+        pages.add(new Page("There is another style of for loop different from its enhanced type, although its not exactly available in python, it can be good to know, it works just the same as a while loop, but you can initialize a variable when starting the loop, and perform a command at the end of every iteration, up until its condition fails"));
+        chapters.get(2).setPages(pages);
+
+        pages = new ArrayList<>();
+        pages.add(new Page("Recursion consists on calling a function while being inside that same function. But, so it can eventually leave its loop, there must a condition inside the function where, when its condition is met, its leaves the function without calling it again"));
+        chapters.get(3).setPages(pages);
+
+        loops.setChapters(chapters);
+
+        ArrayList<Question> questions = new ArrayList<>();
+        questions.add(new Question(new Page("How many times will this code print 'Hello'?\nnumber = 5\nwhile number > 0:\n\tprint('hello')\nnumber -= 1")));
+        questions.get(0).addAnswer("3");
+        questions.get(0).addAnswer("9");
+        questions.get(0).addAnswer("It will never stop");
+        questions.get(0).addAnswer("0");
+        questions.get(0).addCorrectAnswer("5");
+
+        questions.add(new Question(new Page("What is the difference between an enhanced for loop and a while loop?")));
+        questions.get(1).addCorrectAnswer("For is better used for lists and arrays, and While is used to run code when a condition is met multiple times");
+        questions.get(1).addAnswer("No difference");
+        questions.get(1).addAnswer("A while loop consists on calling its own function over and over again, know as a Recursive loop, a for loop it not, known as a Imperative loop");
+        questions.get(1).addAnswer("A while loop is better at iterating over an entire list and array");
+        questions.get(1).addAnswer("A for loop consists on calling its own function over and over again, know as a Recursive loop, a while loop it not, known as a Imperative loop");
+
+        loops.setEndingQuestions(questions);
+        return loops;
     }
 }

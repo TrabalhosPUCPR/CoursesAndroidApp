@@ -21,9 +21,7 @@ public class CourseListManager implements DAO<Course> {
     private CourseListManager(){}
 
     public static ArrayList<Course> createDefaultCourses(){
-        ArrayList<Course> list = new ArrayList<>();
-        list.add(Course.createDefault_DataTypes());
-        return list;
+        return Course.getDefaultCourses();
     }
 
     public void loadDatabase(Context context){
