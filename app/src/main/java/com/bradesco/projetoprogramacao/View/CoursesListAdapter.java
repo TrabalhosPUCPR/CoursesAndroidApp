@@ -14,9 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bradesco.projetoprogramacao.Controller.CourseFragments.CourseActivity;
-import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.R;
+import com.bradesco.projetoprogramacao.Services.LocalServices.CourseService;
+import com.bradesco.projetoprogramacao.Services.LocalServices.DifficultyService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -27,9 +28,10 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
     List<Course> courses;
     ActivityResultLauncher<Intent> resultOpen;
 
-    public CoursesListAdapter(List<Course> courses, Context context, ActivityResultLauncher<Intent> resultOpen) {
+    public CoursesListAdapter(Context context, ActivityResultLauncher<Intent> resultOpen) {
         this.context = context;
-        this.courses = courses;
+        CourseService courseService = new CourseService(context);
+        this.courses = courseService.getList();
         this.resultOpen = resultOpen;
     }
 
@@ -46,7 +48,9 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
         holder.title.setText(course.getTitle());
         holder.subtitle.setText(course.getSubTitle());
         if(course.isCompleted()){
-            holder.completeCheckMark.setImageResource(R.drawable.ic_action_check);
+            holder.completeCheckMark.setVisibility(View.VISIBLE);
+        }else{
+            holder.completeCheckMark.setVisibility(View.GONE);
         }
         holder.description.setText(course.getIntroduction());
         if(course.isExpanded()){
@@ -60,10 +64,16 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
         });
         holder.play.setOnClickListener(view -> {
             Intent intent = new Intent(this.context, CourseActivity.class);
-            intent.putExtra("index", position);
+            intent.putExtra("id", course.getId());
+            intent.putExtra("position", position);
             this.resultOpen.launch(intent);
         });
-        holder.difficulty.setText(CourseListManager.getInstance().getDifficultyName(position));
+        DifficultyService difficultyService = new DifficultyService(this.context);
+        holder.difficulty.setText(difficultyService.get(course.getDifficulty()));
+    }
+
+    public void updateCourseList(List<Course> courses, int updatedIndex){
+        this.courses.get(updatedIndex).setCompleted(courses.get(updatedIndex).isCompleted());
     }
 
     @Override

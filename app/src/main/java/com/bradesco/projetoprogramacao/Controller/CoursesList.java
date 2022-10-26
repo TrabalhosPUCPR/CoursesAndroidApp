@@ -11,9 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.Model.Course.Course;
 import com.bradesco.projetoprogramacao.R;
+import com.bradesco.projetoprogramacao.Services.LocalServices.CourseService;
 import com.bradesco.projetoprogramacao.View.CoursesListAdapter;
 
 import java.util.Objects;
@@ -23,11 +23,13 @@ public class CoursesList extends AppCompatActivity {
     RecyclerView rcvCourses;
     CoursesListAdapter coursesAdapter;
     ActivityResultLauncher<Intent> resultOpenCourse;
+    CourseService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses_list);
+        this.service = new CourseService(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Courses");
@@ -35,10 +37,13 @@ public class CoursesList extends AppCompatActivity {
 
         resultOpenCourse = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if(result.getResultCode() == RESULT_OK) {
-                int index = result.getData().getIntExtra("index", -1);
-                Course course = CourseListManager.getInstance().get(index);
+                int id = result.getData().getIntExtra("id", -1);
+                Course course = service.get(id);
                 course.setCompleted(true);
-                CourseListManager.getInstance().edit(course, index);
+                CourseService service = new CourseService(this);
+                service.edit(course, course.getId());
+                int index = result.getData().getIntExtra("position", -1);
+                coursesAdapter.updateCourseList(service.getList(), index);
                 coursesAdapter.notifyItemChanged(index);
             }
         });
@@ -56,7 +61,7 @@ public class CoursesList extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(RecyclerView.VERTICAL);
         rcvCourses.setLayoutManager(llm);
-        coursesAdapter = new CoursesListAdapter(CourseListManager.getInstance().getList(), this, resultOpenCourse);
+        coursesAdapter = new CoursesListAdapter(this, resultOpenCourse);
         rcvCourses.setAdapter(coursesAdapter);
     }
 }

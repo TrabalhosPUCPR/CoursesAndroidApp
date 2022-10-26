@@ -115,7 +115,7 @@ public class Course {
 
     // DEFAULT COURSES
     public static Course createDefault_DataTypes(){
-        Course dataTypes = new Course("Data Types", "Python basics", "This course we will take a look at the available data types in Python", 0);
+        Course dataTypes = new Course("Data Types", "Python basics", "This course we will take a look at the available data types in Python", 1);
         ArrayList<Page> pages = new ArrayList<>();
         ArrayList<Chapters> chapters = new ArrayList<>();
 
@@ -155,7 +155,7 @@ public class Course {
     }
 
     public static Course createDefault_Loops(){
-        Course loops = new Course("Loops", "Simplifing Code with Loops", "In this course, you will learn why and how to loop in python", 1);
+        Course loops = new Course("Loops", "Simplifing Code with Loops", "In this course, you will learn why and how to loop in python", 2);
 
         ArrayList<Chapters> chapters = new ArrayList<>();
         chapters.add(new Chapters("Introduction", "Looping  in python"));

@@ -9,16 +9,12 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentCoverBinding;
-import com.google.android.material.bottomappbar.BottomAppBar;
 
 public class CoverFragment extends Fragment {
-
-    private FragmentCoverBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +23,7 @@ public class CoverFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentCoverBinding.inflate(getLayoutInflater());
+        com.bradesco.projetoprogramacao.databinding.FragmentCoverBinding binding = FragmentCoverBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         TextView title = root.findViewById(R.id.chapter_title);
         TextView subtitle = root.findViewById(R.id.chapter_subtitle);

@@ -3,10 +3,16 @@ package com.bradesco.projetoprogramacao.Model.Course;
 import java.util.ArrayList;
 
 public class Chapters {
-    private int id;
+    private int id, courseId;
     private String title, description;
     private ArrayList<Page> pages;
 
+    /**
+     * Constructor of a chapter object, id and courseId should be defined only after inserting it on
+     * the database and pages are added in with addPage()
+     * @param title title of the chapter
+     * @param description description of the chapter
+     */
     public Chapters(String title, String description) {
         this.title = title;
         this.description = description;
@@ -47,5 +53,13 @@ public class Chapters {
 
     public void setPages(ArrayList<Page> pages) {
         this.pages = pages;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 }

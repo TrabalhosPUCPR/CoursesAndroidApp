@@ -1,13 +1,11 @@
 package com.bradesco.projetoprogramacao.Model.Course;
 
-import com.bradesco.projetoprogramacao.Model.Course.Page;
-
 import java.util.ArrayList;
 
 public class Question {
-    private int id;
+    private int id, courseId;
     private Page questionArea;
-    private ArrayList<String> answers;
+    private ArrayList<Answers> answers;
     private int correctAnswerIndex;
 
     public Question(Page questionArea) {
@@ -31,28 +29,28 @@ public class Question {
         this.questionArea = questionArea;
     }
 
-    public ArrayList<String> getAnswers() {
+    public ArrayList<Answers> getAnswers() {
         return answers;
     }
 
     public ArrayList<String> getAnswersWithLabel(){
         ArrayList<String> answers = new ArrayList<>();
         for(int i = 0; i < this.answers.size(); i++){
-            answers.add(((char)(97 + i)) + ". " + this.answers.get(i));
+            answers.add(((char)(97 + i)) + ". " + this.answers.get(i).getText());
         }
         return answers;
     }
 
-    public void setAnswers(ArrayList<String> answers) {
+    public void setAnswers(ArrayList<Answers> answers) {
         this.answers = answers;
     }
 
     public void addAnswer(String answer){
-        this.answers.add(answer);
+        this.answers.add(new Answers(this.id, answer));
     }
 
     public void addCorrectAnswer(String answer){
-        this.answers.add(answer);
+        this.answers.add(new Answers(this.id, answer));
         correctAnswerIndex = this.answers.size()-1;
     }
 
@@ -69,6 +67,14 @@ public class Question {
     }
 
     public String getCorrectAnswer(){
-        return this.answers.get(correctAnswerIndex);
+        return this.answers.get(correctAnswerIndex).getText();
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 }

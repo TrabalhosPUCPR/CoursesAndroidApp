@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.R;
+import com.bradesco.projetoprogramacao.Services.LocalServices.CourseService;
 
 import java.util.Objects;
 
@@ -42,9 +42,10 @@ public class OptionsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         TextView coursesAmount = findViewById(R.id.completedCoursesNumber);
-        coursesAmount.setText(String.valueOf(CourseListManager.getInstance().getCompletedCourses().size()));
+        CourseService courseService = new CourseService(this);
+        coursesAmount.setText(String.valueOf(courseService.getCompletedCourses().size()));
         coursesAmount = findViewById(R.id.totalCoursesNumber);
-        coursesAmount.setText(String.valueOf(CourseListManager.getInstance().getList().size()));
+        coursesAmount.setText(String.valueOf(courseService.size()));
         super.onResume();
     }
 

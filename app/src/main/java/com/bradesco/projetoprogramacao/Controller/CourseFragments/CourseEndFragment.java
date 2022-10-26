@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bradesco.projetoprogramacao.Model.Course.CourseListManager;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentCourseEndBinding;
 
@@ -37,7 +36,8 @@ public class CourseEndFragment extends Fragment {
         CourseActivity.bottomAppBar.setOnMenuItemClickListener(null);
 
         Intent intent = new Intent();
-        intent.putExtra("index", CourseActivity.courseIndex);
+        intent.putExtra("id", CourseActivity.courseId);
+        intent.putExtra("position", CourseActivity.indexPosition);
         getActivity().setResult(Activity.RESULT_OK, intent);
 
         CourseActivity.bottomAppBar.setOnMenuItemClickListener(item -> {
