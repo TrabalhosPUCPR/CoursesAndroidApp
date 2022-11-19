@@ -23,7 +23,7 @@ import java.util.Objects;
 public class SandboxActivity extends AppCompatActivity {
 
     private boolean consoleExpanded = false;
-    private int density, initialSize, initialY;
+    private int initialSize;
     private FrameLayout consoleArea;
     private EditText codeArea;
 
@@ -44,8 +44,6 @@ public class SandboxActivity extends AppCompatActivity {
         FloatingActionButton runFab = findViewById(R.id.fab_run);
         FloatingActionButton stopFab = findViewById(R.id.fab_stop);
 
-        Resources resources = getResources();
-        density = (int) resources.getDisplayMetrics().density;
         initialSize = consoleArea.getHeight();
 
         runFab.setOnClickListener(view -> {
