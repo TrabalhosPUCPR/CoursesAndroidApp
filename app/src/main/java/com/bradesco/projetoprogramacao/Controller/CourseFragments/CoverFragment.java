@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Controller.CourseFragments;
+package com.bradesco.projetoprogramacao.controller.courseFragments;
 
 import android.os.Bundle;
 
@@ -31,22 +31,14 @@ public class CoverFragment extends Fragment {
         subtitle.setText(CourseActivity.course.getSubTitle());
         CourseActivity.bottomAppBar.setOnMenuItemClickListener(item -> {
             if(item.getItemId() == R.id.bottomMenuBar_foward){
-                onNextClicked(root);
+                Navigation.findNavController(root).navigate(R.id.action_coverFragment_to_pageFragment);
+            }else if(item.getItemId() == R.id.bottomMenuBar_back){
+                getActivity().finish();
             }else{
-                onReturnClicked();
                 return false;
             }
             return true;
         });
-
         return root;
-    }
-
-    private void onNextClicked(View root){
-        Navigation.findNavController(root).navigate(R.id.action_coverFragment_to_pageFragment);
-    }
-
-    private void onReturnClicked(){
-        getActivity().finish();
     }
 }

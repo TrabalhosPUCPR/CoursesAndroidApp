@@ -1,10 +1,9 @@
-package com.bradesco.projetoprogramacao.Controller.CourseFragments;
+package com.bradesco.projetoprogramacao.controller.courseFragments;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.bradesco.projetoprogramacao.Model.Course.Question;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentQuestionBinding;
+import com.bradesco.projetoprogramacao.model.course.Question;
 
 import java.util.ArrayList;
 
@@ -46,7 +45,7 @@ public class questionFragment extends Fragment{
         chPhNumber.setVisibility(View.GONE);
 
         contentArea = root.findViewById(R.id.contentArea);
-        Question question = CourseActivity.course.getEndingQuestions().get(CourseActivity.currentQuestion);
+        Question question = CourseActivity.getQuestion();
         TextView content = new TextView(getContext());
         content.setText(question.getQuestionArea().getParagraphs());
         contentArea.addView(content);
@@ -63,12 +62,7 @@ public class questionFragment extends Fragment{
 
         this.answerButton.setOnClickListener(view -> {
             if(answered){
-                if (CourseActivity.currentQuestion == CourseActivity.course.getEndingQuestions().size() - 1){
-                    Navigation.findNavController(root).navigate(R.id.action_questionFragment_to_courseEndFragment);
-                }else{
-                    CourseActivity.currentQuestion++;
-                    Navigation.findNavController(root).navigate(R.id.action_questionFragment_self);
-                }
+                CourseActivity.nextQuestion(root);
                 return;
             }
             for(int i = 0; i < radioButtons.size(); i++){

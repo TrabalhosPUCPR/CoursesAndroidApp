@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.LocalServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 
 import androidx.annotation.Nullable;
 
-import com.bradesco.projetoprogramacao.Model.Course.Chapters;
-import com.bradesco.projetoprogramacao.Model.Course.Page;
+import com.bradesco.projetoprogramacao.model.course.Chapters;
+import com.bradesco.projetoprogramacao.model.course.Page;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class ChaptersService extends Service<Chapters> {
 
     @Override
     public Chapters get(int id) {
-        Cursor c = this.getReadableDb().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=?", new String[]{String.valueOf(id)});
+        Cursor c = this.getReadableDatabase().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=?", new String[]{String.valueOf(id)});
         if(c.moveToFirst()){
             return cursorToChapter(c);
         }
@@ -65,7 +65,7 @@ public class ChaptersService extends Service<Chapters> {
 
     public ArrayList<Chapters> getAllWithCourseId(int id){
         ArrayList<Chapters> list = new ArrayList<>();
-        Cursor c = getReadableDb().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[3] + "=?", new String[]{String.valueOf(id)});
+        Cursor c = getReadableDatabase().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[3] + "=?", new String[]{String.valueOf(id)});
         if(c.moveToFirst()){
             do{
                 list.add(cursorToChapter(c));

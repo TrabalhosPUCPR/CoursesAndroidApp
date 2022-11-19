@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Controller.CourseFragments;
+package com.bradesco.projetoprogramacao.controller.courseFragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,22 +39,6 @@ public class CourseEndFragment extends Fragment {
         intent.putExtra("id", CourseActivity.courseId);
         intent.putExtra("position", CourseActivity.indexPosition);
         getActivity().setResult(Activity.RESULT_OK, intent);
-
-        CourseActivity.bottomAppBar.setOnMenuItemClickListener(item -> {
-            if(item.getItemId() == R.id.bottomMenuBar_back){
-                onReturnClicked(root);
-            }else{
-                getActivity().finish();
-                return false;
-            }
-            return true;
-        });
         return root;
-    }
-
-    private void onReturnClicked(View root){
-        CourseActivity.currentChapter = CourseActivity.course.getChapters().size() - 1;
-        CourseActivity.currentPage = CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getPages().size() - 1;
-        Navigation.findNavController(root).navigate(R.id.action_courseEndFragment_to_pageFragment);
     }
 }

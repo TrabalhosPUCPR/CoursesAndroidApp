@@ -4,90 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.SandboxActivity"
+    tools:context=".controller.SandboxActivity"
     android:orientation="vertical">
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/ide_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
+        android:orientation="vertical"
         android:background="@drawable/stroke_shape"
-        android:focusableInTouchMode="true"
-        android:focusable="true">
+        android:clickable="false">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_code_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Write your code here"
+            android:hint="@string/placeholder_codeDIY"
             android:inputType="text|textMultiLine"
             android:textColor="@color/white"
             android:textColorHint="#959595"
             android:padding="15dp"
             android:gravity="top"
-            android:textSize="16sp"
-            android:background="@null" />
-    </ScrollView>
-    <LinearLayout
-        android:id="@+id/consoleArea"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:minHeight="60dp"
-        android:layout_gravity="bottom"
-        android:orientation="vertical"
-        android:clipChildren="false"
-        android:clipToPadding="false">
+            android:textSize="16sp"/>
         <FrameLayout
+            android:id="@+id/consoleLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/stroke_shape"
-            android:backgroundTint="#808080"
-            android:translationY="38dp"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-            <TextView
+            android:layout_height="200dp"
+            android:minHeight="60dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Console"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:src="@drawable/ic_action_stop"
+                android:backgroundTint="#FF0000"
+                app:fabCustomSize="34dp"
+                android:contentDescription="@string/stop"
                 android:layout_gravity="end"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="10dp"
-                android:translationY="-25dp">
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab_stop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_stop"
-                    android:backgroundTint="#FF0000"
-                    app:fabCustomSize="34dp"
-                    android:contentDescription="Stop" />
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab_run"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_play"
-                    app:fabCustomSize="40dp"
-                    android:contentDescription="Run"/>
-            </LinearLayout>
-            <ScrollView
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_run"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_play"
+                app:fabCustomSize="40dp"
+                android:contentDescription="@string/run"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"/>
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="bottom|center"
-                android:layout_marginStart="9dp"
-                android:layout_marginEnd="9dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/stroke_shape"
-                android:translationY="5dp">
+                android:background="@drawable/console_shape"
+                android:translationY="34dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/consoleColor"
+                    android:layout_margin="2dp"
+                    android:text="@string/console"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_corners_shape"
+                    android:backgroundTint="@color/ide_background_color"
+                    android:layout_marginTop="25dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="35dp">
                     <TextView
-                        android:id="@+id/console_text"
-                        android:padding="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Console"
+                        android:id="@+id/text_console"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text=""
+                        android:alpha="0.8"
                         android:textColor="@color/consoleColor"/>
-            </ScrollView>
+                </FrameLayout>
+            </FrameLayout>
         </FrameLayout>
-    </LinearLayout>
+    </FrameLayout>
 </FrameLayout>

@@ -89,7 +89,8 @@ This is a placeholder description just so i can see how it looks"
                 android:layout_height="wrap_content"
                 app:fabCustomSize="40dp"
                 android:src="@drawable/ic_action_play"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end"
+                android:contentDescription="@string/play" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

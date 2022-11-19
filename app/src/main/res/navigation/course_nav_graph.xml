@@ -6,7 +6,7 @@
     app:startDestination="@id/coverFragment">
     <fragment
         android:id="@+id/coverFragment"
-        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.CoverFragment"
+        android:name="com.bradesco.projetoprogramacao.controller.courseFragments.CoverFragment"
         android:label="CoverFragment"
         tools:layout="@layout/fragment_cover">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/pageFragment"
-        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.PageFragment"
+        android:name="com.bradesco.projetoprogramacao.controller.courseFragments.PageFragment"
         android:label="fragment_page"
         tools:layout="@layout/fragment_page" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/courseEndFragment"
-        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.CourseEndFragment"
+        android:name="com.bradesco.projetoprogramacao.controller.courseFragments.CourseEndFragment"
         android:label="fragment_course_end"
         tools:layout="@layout/fragment_course_end" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.bradesco.projetoprogramacao.Controller.CourseFragments.questionFragment"
+        android:name="com.bradesco.projetoprogramacao.controller.courseFragments.questionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" >
         <action

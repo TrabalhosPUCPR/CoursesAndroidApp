@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.LocalServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -33,7 +33,7 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
         this.TABLE_NAME = TABLE_NAME;
         this.columns = columns;
         this.col_modifiers = col_modifiers;
-        SQLiteDatabase sqLiteDatabase = getWritableDb();
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         if(!tableExists()){
             createTable(sqLiteDatabase);
             if(!onServiceCreate(sqLiteDatabase)){
@@ -43,8 +43,10 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
     }
 
     private boolean tableExists(){
-        Cursor c = getReadableDb().rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='" + this.TABLE_NAME + "'", null);
-        return c.getCount() == 1;
+        Cursor c = getReadableDatabase().rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='" + this.TABLE_NAME + "'", null);
+        int i = c.getCount();
+        c.close();
+        return i == 1;
     }
 
     @Override
@@ -54,13 +56,6 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-    }
-
-    public SQLiteDatabase getWritableDb(){
-        return getWritableDatabase();
-    }
-    public SQLiteDatabase getReadableDb(){
-        return getReadableDatabase();
     }
 
     public void createTable(SQLiteDatabase db){
@@ -86,7 +81,7 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
      * @return the id of the inserted value, returns -1 when it fails
      */
     public long insert(ContentValues values) {
-        return getWritableDb().insert(this.TABLE_NAME, null, values);
+        return getWritableDatabase().insert(this.TABLE_NAME, null, values);
     }
 
     /**
@@ -96,13 +91,13 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
      * @return returns true if the update succeeded or false if not
      */
     public boolean update(ContentValues values, int id){
-        return getWritableDb().update(this.TABLE_NAME, values, this.columns[0] + "=?", new String[]{String.valueOf(id)}) == 1;
+        return getWritableDatabase().update(this.TABLE_NAME, values, this.columns[0] + "=?", new String[]{String.valueOf(id)}) == 1;
     }
 
     @Override
     public List<T> getList() {
         ArrayList<T> list = new ArrayList<>();
-        Cursor c = getWritableDb().rawQuery("SELECT " + this.columns[0] + " FROM " + this.TABLE_NAME, null);
+        Cursor c = getWritableDatabase().rawQuery("SELECT " + this.columns[0] + " FROM " + this.TABLE_NAME, null);
         if(c.moveToFirst()){
             do{
                 list.add(this.get(c.getInt(0)));
@@ -118,7 +113,7 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
      */
     @Override
     public boolean clearAll() {
-        int count = getWritableDb().delete(this.TABLE_NAME, null, null);
+        int count = getWritableDatabase().delete(this.TABLE_NAME, null, null);
         return count > 0;
     }
 
@@ -129,17 +124,17 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
      */
     @Override
     public boolean remove(int id) {
-        return getWritableDb().delete(this.TABLE_NAME, this.columns[0] + "=?", new String[]{String.valueOf(id)}) == 1;
+        return getWritableDatabase().delete(this.TABLE_NAME, this.columns[0] + "=?", new String[]{String.valueOf(id)}) == 1;
     }
 
     public int size(){
-        long count = DatabaseUtils.queryNumEntries(getReadableDb(), this.TABLE_NAME);
+        long count = DatabaseUtils.queryNumEntries(getReadableDatabase(), this.TABLE_NAME);
         return (int) count;
     }
 
-    public ArrayList<Integer> getPrimaryKeys(){
+    final public ArrayList<Integer> getPrimaryKeys(){
         ArrayList<Integer> list = new ArrayList<>();
-        Cursor c = getReadableDb().rawQuery("SELECT " + this.columns[0] + " FROM " + this.TABLE_NAME, null);
+        Cursor c = getReadableDatabase().rawQuery("SELECT " + this.columns[0] + " FROM " + this.TABLE_NAME, null);
         if(c.moveToFirst()){
             do{
                 list.add(c.getInt(0));

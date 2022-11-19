@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.LocalServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import com.bradesco.projetoprogramacao.Model.Course.Chapters;
-import com.bradesco.projetoprogramacao.Model.Course.Course;
-import com.bradesco.projetoprogramacao.Model.Course.Question;
+import com.bradesco.projetoprogramacao.model.course.Chapters;
+import com.bradesco.projetoprogramacao.model.course.Course;
+import com.bradesco.projetoprogramacao.model.course.Question;
 
 import java.util.ArrayList;
 
@@ -79,7 +79,7 @@ public class CourseService extends Service<Course> {
 
     @Override
     public Course get(int id) {
-        Cursor c = this.getReadableDb().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=?", new String[]{String.valueOf(id)});
+        Cursor c = this.getReadableDatabase().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=?", new String[]{String.valueOf(id)});
         if(c.moveToFirst()){
             ChaptersService chaptersService = new ChaptersService(context);
             QuestionService questionService = new QuestionService(context);

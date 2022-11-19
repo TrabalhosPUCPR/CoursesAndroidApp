@@ -19,4 +19,12 @@
     <string name="ChPgNumber">Ch. %d   |   Pg. %d</string>
     <string name="completed">Completed!</string>
     <string name="Return">Return</string>
+    <string name="placeholder_codeDIY">Write your code here</string>
+    <string name="console">Console</string>
+    <string name="run">Run</string>
+    <string name="stop">Stop</string>
+    <string name="save">Save</string>
+    <string name="settings">Settings</string>
+    <string name="play">Play</string>
+    <string name="title_placeholder">Title</string>
 </resources>

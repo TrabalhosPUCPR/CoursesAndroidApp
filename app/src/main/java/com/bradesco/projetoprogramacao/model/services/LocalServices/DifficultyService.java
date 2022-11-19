@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.LocalServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,7 +30,7 @@ public class DifficultyService extends Service<String> {
 
     @Override
     public String get(int id) {
-        Cursor c = getReadableDb().rawQuery("SELECT " + this.columns[1] + " FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=?", new String[]{String.valueOf(id)});
+        Cursor c = getReadableDatabase().rawQuery("SELECT " + this.columns[1] + " FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=?", new String[]{String.valueOf(id)});
         if(c.moveToFirst()){
             return c.getString(0);
         }

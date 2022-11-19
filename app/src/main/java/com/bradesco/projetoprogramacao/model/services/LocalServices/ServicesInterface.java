@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.Services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.LocalServices;
 
 import java.util.List;
 

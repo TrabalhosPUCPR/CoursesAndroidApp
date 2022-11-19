@@ -1,5 +1,6 @@
-package com.bradesco.projetoprogramacao.Controller.CourseFragments;
+package com.bradesco.projetoprogramacao.controller.courseFragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bradesco.projetoprogramacao.Model.Course.Page;
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentPageBinding;
+import com.bradesco.projetoprogramacao.model.course.Page;
 
 public class PageFragment extends Fragment {
 
@@ -29,7 +30,7 @@ public class PageFragment extends Fragment {
         com.bradesco.projetoprogramacao.databinding.FragmentPageBinding binding = FragmentPageBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
 
-        Page page = CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getPages().get(CourseActivity.currentPage);
+        Page page = CourseActivity.getPage();
 
         TextView chapterTitle = root.findViewById(R.id.page_chapterTitle);
         TextView courseTitle = root.findViewById(R.id.page_CourseTitle);
@@ -46,7 +47,7 @@ public class PageFragment extends Fragment {
             chapterNumber.setVisibility(View.GONE);
         }
 
-        chapterTitle.setText(CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getTitle());
+        chapterTitle.setText(CourseActivity.getChapter().getTitle());
         courseTitle.setText(CourseActivity.course.getTitle());
 
         TextView text = new TextView(getContext());
@@ -56,9 +57,9 @@ public class PageFragment extends Fragment {
 
         CourseActivity.bottomAppBar.setOnMenuItemClickListener(item -> {
             if(item.getItemId() == R.id.bottomMenuBar_foward){
-                onNextClicked(root);
+                nextPage(root);
             }else if(item.getItemId() == R.id.bottomMenuBar_back){
-                onReturnClicked(root);
+                previousPage(root);
             }else{
                 return false;
             }
@@ -68,36 +69,31 @@ public class PageFragment extends Fragment {
         return root;
     }
 
-    private void onNextClicked(View root){
+    static protected void nextPage(View root){
         CourseActivity.currentPage++;
-        if(CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getPages().size() == CourseActivity.currentPage){
-            CourseActivity.currentChapter++;
-            CourseActivity.currentPage = 0;
-            if(CourseActivity.course.getChapters().size() == CourseActivity.currentChapter){
-                // end course
-                CourseActivity.currentChapter = 0;
-                if(CourseActivity.course.getEndingQuestions().isEmpty()){
+        if(CourseActivity.getChapter().getPages().size() == CourseActivity.currentPage) {
+            if (!CourseActivity.nextChapter()) {
+                if (CourseActivity.course.getEndingQuestions().isEmpty() || CourseActivity.finished) {
                     Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_courseEndFragment);
-                }else{
+                } else {
                     Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_questionFragment);
                 }
+                CourseActivity.finished = true;
                 return;
             }
         }
         Navigation.findNavController(root).navigate(R.id.action_pageFragment_self);
     }
 
-    private void onReturnClicked(View root){
+    static protected void previousPage(View root){
         if(CourseActivity.currentPage == 0){
-            if(CourseActivity.currentChapter == 0){
+            if(!CourseActivity.previousChapter()){
                 Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_coverFragment2, null, null, null);
                 return;
             }
-            CourseActivity.currentChapter--;
-            CourseActivity.currentPage = CourseActivity.course.getChapters().get(CourseActivity.currentChapter).getPages().size() - 1;
-        }else{
-            CourseActivity.currentPage--;
+            CourseActivity.currentPage = CourseActivity.getChapter().getPages().size();
         }
+        CourseActivity.currentPage--;
         Navigation.findNavController(root).navigate(R.id.action_pageFragment_self);
     }
 }
