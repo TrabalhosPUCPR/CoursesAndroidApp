@@ -12,4 +12,7 @@
     <color name="correctAnswer">#3BB63D</color>
     <color name="wrongAnswer">#B81E1E</color>
     <color name="clickableConsoleButton">#636363</color>
+    <color name="stopRunning_fab">#FF0000</color>
+    <color name="stopNotRunning_fab">#373737</color>
+    <color name="run_fab">#45EA7C</color>
 </resources>

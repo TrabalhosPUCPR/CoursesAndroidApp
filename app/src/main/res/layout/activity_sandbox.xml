@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.SandboxActivity"
+    tools:context=".controller.sandBox.SandboxActivity"
     android:orientation="vertical">
     <FrameLayout
         android:id="@+id/ide_screen"
@@ -13,17 +13,18 @@
         android:orientation="vertical"
         android:background="@drawable/stroke_shape"
         android:clickable="false">
-        <com.google.android.material.textfield.TextInputEditText
+        <com.bradesco.projetoprogramacao.controller.sandBox.IdeCodeParser
             android:id="@+id/editText_code_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/placeholder_codeDIY"
-            android:inputType="text|textMultiLine"
+            android:inputType="textFilter|textMultiLine"
             android:textColor="@color/white"
             android:textColorHint="#959595"
             android:padding="15dp"
             android:gravity="top"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:scrollbars="vertical"/>
         <FrameLayout
             android:id="@+id/consoleLayout"
             android:layout_width="match_parent"
@@ -36,8 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_stop"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/stopRunning_fab"
                 app:fabCustomSize="34dp"
+                app:borderWidth="0dp"
                 android:contentDescription="@string/stop"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
@@ -47,6 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_play"
+                android:backgroundTint="@color/run_fab"
+                app:borderWidth="0dp"
                 app:fabCustomSize="40dp"
                 android:contentDescription="@string/run"
                 android:layout_gravity="end"
@@ -65,22 +69,24 @@
                     android:backgroundTint="@color/consoleColor"
                     android:layout_margin="2dp"
                     android:text="@string/console"/>
-                <FrameLayout
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/round_corners_shape"
                     android:backgroundTint="@color/ide_background_color"
                     android:layout_marginTop="25dp"
                     android:padding="10dp"
-                    android:layout_marginBottom="35dp">
+                    android:layout_marginBottom="35dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true">
                     <TextView
                         android:id="@+id/text_console"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text=""
                         android:alpha="0.8"
-                        android:textColor="@color/consoleColor"/>
-                </FrameLayout>
+                        android:textColor="@color/consoleColor"
+                        android:scrollbars="vertical"/>
+                </ScrollView>
             </FrameLayout>
         </FrameLayout>
     </FrameLayout>

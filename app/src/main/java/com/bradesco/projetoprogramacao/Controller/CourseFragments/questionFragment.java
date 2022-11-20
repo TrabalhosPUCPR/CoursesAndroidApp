@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,7 @@ public class questionFragment extends Fragment{
 
         this.answerButton.setOnClickListener(view -> {
             if(answered){
-                CourseActivity.nextQuestion(root);
+                nextQuestion(root);
                 return;
             }
             for(int i = 0; i < radioButtons.size(); i++){
@@ -92,5 +93,14 @@ public class questionFragment extends Fragment{
         answerButton.setText(getActivity().getResources().getString(R.string.Continue));
         radioButtons.get(answer).setBackgroundColor(getResources().getColor(R.color.wrongAnswer));
         radioButtons.get(question.getCorrectAnswerIndex()).setBackgroundColor(getResources().getColor(R.color.correctAnswer));
+    }
+
+    static protected void nextQuestion(View root){
+        if (CourseActivity.currentQuestion == CourseActivity.course.getEndingQuestions().size() - 1){
+            Navigation.findNavController(root).navigate(R.id.action_questionFragment_to_courseEndFragment);
+        }else{
+            CourseActivity.currentQuestion++;
+            Navigation.findNavController(root).navigate(R.id.action_questionFragment_self);
+        }
     }
 }

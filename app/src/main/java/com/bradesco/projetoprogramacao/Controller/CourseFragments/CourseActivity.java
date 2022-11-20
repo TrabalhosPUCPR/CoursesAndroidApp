@@ -1,9 +1,7 @@
 package com.bradesco.projetoprogramacao.controller.courseFragments;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -67,13 +65,5 @@ public class CourseActivity extends AppCompatActivity {
     }
     static protected Question getQuestion(){
         return course.getEndingQuestions().get(currentQuestion);
-    }
-    static protected void nextQuestion(View root){
-        if (CourseActivity.currentQuestion == CourseActivity.course.getEndingQuestions().size() - 1){
-            Navigation.findNavController(root).navigate(R.id.action_questionFragment_to_courseEndFragment);
-        }else{
-            CourseActivity.currentQuestion++;
-            Navigation.findNavController(root).navigate(R.id.action_questionFragment_self);
-        }
     }
 }
