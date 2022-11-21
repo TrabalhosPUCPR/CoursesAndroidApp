@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import com.bradesco.projetoprogramacao.model.course.Course;
 import com.bradesco.projetoprogramacao.R;
-import com.bradesco.projetoprogramacao.model.services.LocalServices.CourseService;
+import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
 import com.bradesco.projetoprogramacao.view.CoursesListAdapter;
 
 import java.util.Objects;

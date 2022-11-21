@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.model.services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.localServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
+import com.bradesco.projetoprogramacao.model.course.Activities;
 import com.bradesco.projetoprogramacao.model.course.Chapters;
 import com.bradesco.projetoprogramacao.model.course.Course;
 import com.bradesco.projetoprogramacao.model.course.Question;
@@ -45,15 +46,19 @@ public class CourseService extends Service<Course> {
         ContentValues values = getValues(course);
         ChaptersService chaptersService = new ChaptersService(context);
         QuestionService questionService = new QuestionService(context);
+        ActivitiesService activitiesService = new ActivitiesService(context);
         course.setId((int) this.insert(values));
-        ArrayList<Chapters> chapters = course.getChapters();
-        for(Chapters chapter : chapters){
+        for(Chapters chapter : course.getChapters()){
             chapter.setCourseId(course.getId());
             chaptersService.add(chapter);
         }
         for(Question question : course.getEndingQuestions()){
             question.setCourseId(course.getId());
             questionService.add(question);
+        }
+        for(Activities activity : course.getActivities()){
+            activity.setCourseId(course.getId());
+            activitiesService.add(activity);
         }
         return course.getId() > 0;
     }

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.controller.sandBox.SandboxActivity;
-import com.bradesco.projetoprogramacao.model.services.LocalServices.CourseService;
+import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
 
 import java.util.Objects;
 
@@ -32,7 +32,8 @@ public class OptionsActivity extends AppCompatActivity {
         });
         button = findViewById(R.id.btn_option2_optionsMenu);
         button.setOnClickListener(view -> {
-            // TODO: 10/21/2022 activities 
+            Intent intent = new Intent(this, ActivitiesList.class);
+            startActivity(intent);
         });
         button = findViewById(R.id.btn_option3_optionsMenu);
         button.setOnClickListener(view -> {

@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.model.services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.localServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -50,13 +50,9 @@ public abstract class Service<T> extends SQLiteOpenHelper implements ServicesInt
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-    }
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {}
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {}
 
     public void createTable(SQLiteDatabase db){
         StringBuilder query = new StringBuilder("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(");

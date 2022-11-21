@@ -11,7 +11,7 @@ import com.bradesco.projetoprogramacao.model.course.Chapters;
 import com.bradesco.projetoprogramacao.model.course.Course;
 import com.bradesco.projetoprogramacao.model.course.Page;
 import com.bradesco.projetoprogramacao.model.course.Question;
-import com.bradesco.projetoprogramacao.model.services.LocalServices.CourseService;
+import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
 public class CourseActivity extends AppCompatActivity {

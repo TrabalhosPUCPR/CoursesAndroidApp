@@ -27,4 +27,9 @@
     <string name="settings">Settings</string>
     <string name="play">Play</string>
     <string name="title_placeholder">Title</string>
+    <string name="title_activity_activities_options">ActivitiesOptions</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="complete">Complete</string>
 </resources>

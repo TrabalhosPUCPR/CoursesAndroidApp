@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.model.services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.localServices;
 
 import android.content.ContentValues;
 import android.content.Context;

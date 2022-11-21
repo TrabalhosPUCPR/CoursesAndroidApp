@@ -7,12 +7,14 @@ public class Course {
     private String title, subTitle, introduction;
     private ArrayList<Chapters> chapters;
     private ArrayList<Question> endingQuestions;
+    private ArrayList<Activities> activities;
     private int difficulty;
     private boolean completed, expanded;
 
     public Course(){
         this.chapters = new ArrayList<>();
         this.endingQuestions = new ArrayList<>();
+        this.activities = new ArrayList<>();
     }
     public Course(String title, String subTitle, String introduction, int difficulty) {
         this.title = title;
@@ -20,6 +22,7 @@ public class Course {
         this.difficulty = difficulty;
         this.chapters = new ArrayList<>();
         this.endingQuestions = new ArrayList<>();
+        this.activities = new ArrayList<>();
         this.completed = false;
         this.introduction = introduction;
         this.expanded = false;
@@ -107,6 +110,14 @@ public class Course {
 
     public void setEndingQuestions(ArrayList<Question> endingQuestions) {
         this.endingQuestions = endingQuestions;
+    }
+
+    public ArrayList<Activities> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(ArrayList<Activities> activities) {
+        this.activities = activities;
     }
 
     public static ArrayList<Course> getDefaultCourses(){
@@ -205,6 +216,11 @@ public class Course {
         questions.get(1).addAnswer("A for loop consists on calling its own function over and over again, know as a Recursive loop, a while loop it not, known as a Imperative loop");
 
         loops.setEndingQuestions(questions);
+
+        ArrayList<Activities> activities = new ArrayList<>();
+        Page page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using a simple while loop");
+        activities.add(new Activities("While Looping", "Simple activity to practice loops", "12345", 1, page));
+        loops.setActivities(activities);
         return loops;
     }
 }

@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bradesco.projetoprogramacao.controller.courseFragments.CourseActivity;
 import com.bradesco.projetoprogramacao.model.course.Course;
 import com.bradesco.projetoprogramacao.R;
-import com.bradesco.projetoprogramacao.model.services.LocalServices.CourseService;
-import com.bradesco.projetoprogramacao.model.services.LocalServices.DifficultyService;
+import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
+import com.bradesco.projetoprogramacao.model.services.localServices.DifficultyService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

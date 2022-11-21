@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:src="@drawable/ic_action_check"
-            android:contentDescription="Complete"/>
+            android:contentDescription="@string/complete"/>
     </FrameLayout>
     <LinearLayout
         android:id="@+id/adapter_ExpandableArea"

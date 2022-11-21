@@ -1,4 +1,4 @@
-package com.bradesco.projetoprogramacao.model.services.LocalServices;
+package com.bradesco.projetoprogramacao.model.services.localServices;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,7 +20,8 @@ public class AnswerService extends Service<Answers>{
         ContentValues values = new ContentValues();
         values.put(this.columns[1], answer.getText());
         values.put(this.columns[2], answer.getQuestionId());
-        return this.insert(values) > 0;
+        answer.setId((int) this.insert(values));
+        return answer.getId() > 0;
     }
 
     @Override
