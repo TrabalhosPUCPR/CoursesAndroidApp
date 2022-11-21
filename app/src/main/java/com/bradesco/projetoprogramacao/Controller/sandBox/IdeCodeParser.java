@@ -1,47 +1,69 @@
 package com.bradesco.projetoprogramacao.controller.sandBox;
 
 import android.content.Context;
+import android.text.Layout;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class IdeCodeParser extends TextInputEditText {
-    private Character lastNonEmptyChar = ' ';
-    private StringBuilder lastWord = new StringBuilder();
-    private int innerFunctions = 0;
     private boolean editingCode = false;
     private final int tabSize = 8;
+    LinkedList<Integer> innerFunctions = new LinkedList<>();
 
     public IdeCodeParser(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setText("");
+        innerFunctions.add(0);
     }
 
     private void appendCharacter(char c){
         String code = toString();
+        int cursorPosition = getSelectionStart() - 1;
+        int line = getCurrentLine(cursorPosition);
         if(c == '\n' ){
-            if(lastNonEmptyChar == ':'){
-                innerFunctions++;
-                addToCode(repeatString(" ", innerFunctions*tabSize));
+            innerFunctions.add(line, innerFunctions.get(line));
+            if(code.length() > 0 && code.charAt(getIndexOfFirstCharInLineBefore(code, cursorPosition - 1)) == ':'){
+                innerFunctions.set(line+1, innerFunctions.get(line+1)+1);
             }
-        }else if(Character.getNumericValue(c) == 8){
-            if(code.charAt(code.length()-1) == '\n'){
-                innerFunctions--;
+            addToCode(repeatString(" ", innerFunctions.get(innerFunctions.size()-1)*tabSize));
+        }else if(c == '\b'){
+            int pos = getIndexOfFirstCharInLineBefore(code, cursorPosition);
+            int col = getCurrentColumn(cursorPosition) + 1;
+            String sub;
+            if(code.charAt(pos) == '\n'){
+                sub = code.substring(0, code.length() - tabSize);
+                if(col == tabSize-1){
+                    innerFunctions.set(line, innerFunctions.get(line)-1);
+                }
+                setCode(sub);
             }
-        }
-        lastWord.append(c);
-        if(!Character.isSpaceChar(c)) {
-            lastWord = new StringBuilder();
-            lastNonEmptyChar = c;
         }
     }
 
+    public int getCurrentLine(int cursorPos){
+        return getLayout().getLineForOffset(cursorPos);
+    }
+
+    public int getCurrentColumn(int cursorPos){
+        return cursorPos - getLayout().getLineStart(getCurrentLine(cursorPos));
+    }
+
     private void addToCode(String s){
-        String text = this.toString() + s;
+        String text = this + s;
+        setCode(text);
+    }
+
+    private void setCode(String s){
         editingCode = true;
-        setText(text);
+        setText(s);
         editingCode = false;
-        setSelection(text.length());
+        setSelection(s.length());
     }
 
     @Override
@@ -52,12 +74,28 @@ public class IdeCodeParser extends TextInputEditText {
         return getText().toString();
     }
 
+    private int countEmptySpacesBeforeLn(String text, int index){
+        int counter = 0;
+        while(text.charAt(index--) == ' '){
+            counter++;
+        }
+        return counter;
+    }
+
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
+        // TODO: 11/20/2022  
+        /*
+        while (!editingCode && lengthBefore > lengthAfter){
+            appendCharacter((char) 8);
+            lengthBefore--;
+        }
         while (!editingCode && start < text.length()){
             appendCharacter(text.charAt(text.length()-1));
             start++;
         }
+        
+         */
     }
     private static String repeatString(String s, int count){
         StringBuilder builder = new StringBuilder();
@@ -65,5 +103,11 @@ public class IdeCodeParser extends TextInputEditText {
             builder.append(s);
         }
         return builder.toString();
+    }
+    private static int getIndexOfFirstCharInLineBefore(String text, int index){
+        while (text.charAt(index) == ' '){
+            index--;
+        }
+        return index;
     }
 }

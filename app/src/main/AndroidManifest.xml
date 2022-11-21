@@ -15,7 +15,7 @@
         <activity
             android:name=".controller.sandBox.SandboxActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

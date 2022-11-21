@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -47,6 +48,11 @@ public class OptionsActivity extends AppCompatActivity {
         coursesAmount.setText(String.valueOf(courseService.getCompletedCourses().size()));
         coursesAmount = findViewById(R.id.totalCoursesNumber);
         coursesAmount.setText(String.valueOf(courseService.size()));
+        if(courseService.size() == courseService.getCompletedCourses().size()){
+            findViewById(R.id.completedStars).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.completedStars).setVisibility(View.INVISIBLE);
+        }
         super.onResume();
     }
 

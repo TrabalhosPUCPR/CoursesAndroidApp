@@ -1,93 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".controller.sandBox.SandboxActivity"
-    android:orientation="vertical">
-    <FrameLayout
-        android:id="@+id/ide_screen"
+<layout>
+    <data>
+        <variable
+            name="running"
+            type="Boolean"/>
+        <variable
+            name="consoleOutput"
+            type="String"/>
+    </data>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/stroke_shape"
-        android:clickable="false">
-        <com.bradesco.projetoprogramacao.controller.sandBox.IdeCodeParser
-            android:id="@+id/editText_code_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/placeholder_codeDIY"
-            android:inputType="textFilter|textMultiLine"
-            android:textColor="@color/white"
-            android:textColorHint="#959595"
-            android:padding="15dp"
-            android:gravity="top"
-            android:textSize="16sp"
-            android:scrollbars="vertical"/>
+        tools:context=".controller.sandBox.SandboxActivity"
+        android:orientation="vertical">
         <FrameLayout
-            android:id="@+id/consoleLayout"
+            android:id="@+id/ide_screen"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:minHeight="60dp"
-            android:layout_gravity="bottom"
-            android:orientation="vertical">
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_stop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_stop"
-                android:backgroundTint="@color/stopRunning_fab"
-                app:fabCustomSize="34dp"
-                app:borderWidth="0dp"
-                android:contentDescription="@string/stop"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="60dp"/>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_run"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_play"
-                android:backgroundTint="@color/run_fab"
-                app:borderWidth="0dp"
-                app:fabCustomSize="40dp"
-                android:contentDescription="@string/run"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"/>
-            <FrameLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/stroke_shape"
+            android:clickable="false">
+            <com.bradesco.projetoprogramacao.controller.sandBox.IdeCodeParser
+                android:id="@+id/editText_code_area"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/console_shape"
-                android:translationY="34dp"
-                android:clipChildren="false"
-                android:clipToPadding="false">
-                <TextView
+                android:layout_height="wrap_content"
+                android:hint="@string/placeholder_codeDIY"
+                android:inputType="textFilter|textMultiLine"
+                android:textColor="@color/white"
+                android:textColorHint="#959595"
+                android:padding="15dp"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:scrollbars="vertical"/>
+            <FrameLayout
+                android:id="@+id/consoleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:minHeight="60dp"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_stop"
+                    android:backgroundTint="@color/stopRunning_fab"
+                    app:fabCustomSize="34dp"
+                    app:borderWidth="0dp"
+                    android:contentDescription="@string/stop"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="60dp"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_run"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_play"
+                    android:backgroundTint="@color/run_fab"
+                    app:borderWidth="0dp"
+                    app:fabCustomSize="40dp"
+                    android:contentDescription="@string/run"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"/>
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/consoleColor"
-                    android:layout_margin="2dp"
-                    android:text="@string/console"/>
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/round_corners_shape"
-                    android:backgroundTint="@color/ide_background_color"
-                    android:layout_marginTop="25dp"
-                    android:padding="10dp"
-                    android:layout_marginBottom="35dp"
-                    android:scrollbarAlwaysDrawVerticalTrack="true">
+                    android:background="@drawable/console_shape"
+                    android:translationY="34dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
                     <TextView
-                        android:id="@+id/text_console"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:alpha="0.8"
-                        android:textColor="@color/consoleColor"
-                        android:scrollbars="vertical"/>
-                </ScrollView>
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/consoleColor"
+                        android:layout_margin="2dp"
+                        android:text="@string/console"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_corners_shape"
+                        android:backgroundTint="@color/ide_background_color"
+                        android:layout_marginTop="25dp"
+                        android:padding="10dp"
+                        android:layout_marginBottom="35dp">
+                        <TextView
+                            android:id="@+id/consoleText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text=""
+                            android:alpha="0.8"
+                            android:textColor="@color/consoleColor"
+                            android:scrollbars="vertical|horizontal"
+                            android:scrollbarThumbVertical="@drawable/scrollbar"
+                            android:scrollbarThumbHorizontal="@drawable/scrollbar"
+                            android:scrollbarDefaultDelayBeforeFade="5"
+                            android:gravity="bottom"/>
+                    </FrameLayout>
+                </FrameLayout>
             </FrameLayout>
         </FrameLayout>
     </FrameLayout>
-</FrameLayout>
+</layout>

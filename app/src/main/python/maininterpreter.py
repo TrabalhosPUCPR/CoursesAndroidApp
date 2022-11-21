@@ -1,5 +1,23 @@
 import threading
 import sys
+import ctypes
+import inspect
+
+
+def _async_raise(tid, exctype):
+    tid = ctypes.c_long(tid)
+    if not inspect.isclass(exctype):
+        exctype = type(exctype)
+    res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
+    if res == 0:
+        raise ValueError("Invalid thread id")
+    elif res != 1:
+        ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+        raise SystemError("Timeout Exception")
+
+
+def stop_thread(thread):
+    _async_raise(thread.ident, SystemExit)
 
 
 class InterruptableThread(threading.Thread):
@@ -46,18 +64,16 @@ def text_thread_run(code):
 
 
 def maintextcode(code):
-    global thread1, log
+    global runner_thread, log
     log = Logger()
-    thread1 = InterruptableThread(code)
+    runner_thread = InterruptableThread(code)
     log.start()
-    thread1.start()
-    while (isrunning()):
-        ...
+    runner_thread.start()
 
 
 def isrunning():
-    global thread1
-    return thread1.is_alive()
+    global runner_thread
+    return 'runner_thread' in globals() and runner_thread.is_alive()
 
 
 def consolestring():
@@ -73,8 +89,7 @@ def consolestring():
 
 
 def stopcode():
-    global thread1, log
-    if not isrunning():
-        return
-    thread1.stop()
+    global runner_thread, log
+    stop_thread(runner_thread)
     log.stop()
+

@@ -15,4 +15,6 @@
     <color name="stopRunning_fab">#FF0000</color>
     <color name="stopNotRunning_fab">#373737</color>
     <color name="run_fab">#45EA7C</color>
+    <color name="consoleRedFont">#AA0C00</color>
+    <color name="consoleGreenFont">#5DE662</color>
 </resources>
