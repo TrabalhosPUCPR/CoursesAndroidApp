@@ -1,6 +1,8 @@
 package com.bradesco.projetoprogramacao.controller;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +33,10 @@ public class ActivitiesList extends AppCompatActivity {
         setContentView(R.layout.activity_activities_list);
 
         this.service = new ActivitiesService(this);
-        List<Activities> activities = service.getList();
+
+        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            //int id = result.getResultCode();
+        });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Activities");
@@ -51,7 +56,7 @@ public class ActivitiesList extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(RecyclerView.VERTICAL);
         rcvActivities.setLayoutManager(llm);
-        adapter = new ActivitiesListAdapter(service.getList(), this);
+        adapter = new ActivitiesListAdapter(service.getList(), this, resultLauncher);
         rcvActivities.setAdapter(adapter);
     }
 }

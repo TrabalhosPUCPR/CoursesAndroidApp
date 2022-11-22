@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ProjetoProgramacao"
         tools:targetApi="31">
         <activity
-            android:name=".PlayActivities"
+            android:name=".controller.playActivitiesFragments.PlayActivities"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -22,14 +22,6 @@
         <activity
             android:name=".controller.ActivitiesList"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ActivitiesOptions"
-            android:exported="false"
-            android:label="@string/title_activity_activities_options">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -48,7 +48,7 @@ public class ActivitiesService extends Service<Activities> {
         Cursor c = getReadableDatabase().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[0] + "=" + id, null);
         if(c.moveToFirst()){
             PageService pageService = new PageService(context);
-            Activities a = new Activities(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getInt(4), pageService.get(c.getInt(6)), c.getInt(6));
+            Activities a = new Activities(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getInt(4), pageService.get(c.getInt(5)), c.getInt(6));
             a.setCompleted(c.getInt(7) == 1);
             c.close();
             return a;

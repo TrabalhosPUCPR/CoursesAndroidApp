@@ -1,16 +1,18 @@
 package com.bradesco.projetoprogramacao.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bradesco.projetoprogramacao.R;
+import com.bradesco.projetoprogramacao.controller.playActivitiesFragments.PlayActivities;
 import com.bradesco.projetoprogramacao.databinding.ActivitiesListAdapterBinding;
 import com.bradesco.projetoprogramacao.model.course.Activities;
 import com.bradesco.projetoprogramacao.model.services.localServices.DifficultyService;
@@ -21,10 +23,12 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
 
     List<Activities> activities;
     Context context;
+    ActivityResultLauncher<Intent> resultLauncher;
 
-    public ActivitiesListAdapter(List<Activities> activities, Context context) {
+    public ActivitiesListAdapter(List<Activities> activities, Context context, ActivityResultLauncher<Intent> resultLauncher) {
         this.activities = activities;
         this.context = context;
+        this.resultLauncher = resultLauncher;
     }
 
     @NonNull
@@ -33,8 +37,6 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
         ActivitiesListAdapterBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 R.layout.activities_list_adapter, parent, false);
-
-        //ActivitiesListAdapterBinding binding = ActivitiesListAdapterBinding.inflate(LayoutInflater.from(parent.getContext()));
         return new ActivitiesViewHolder(binding);
     }
 
@@ -45,6 +47,10 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
         holder.binding.adapterTextDifficulty.setText(difficultyService.get(this.activities.get(position).getDifficulty()));
         holder.binding.adapterBtnPlay.setOnClickListener(view -> {
             // TODO: 11/21/2022 play activity
+            Intent intent = new Intent(this.context, PlayActivities.class);
+            intent.putExtra("id", activities.get(position).getId());
+            intent.putExtra("type", 1);
+            resultLauncher.launch(intent);
         });
         if(activities.get(position).isCompleted()){
             holder.binding.adapterCompleteCheckMark.setVisibility(View.VISIBLE);
@@ -60,7 +66,6 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
 
     public static class ActivitiesViewHolder extends RecyclerView.ViewHolder{
         ActivitiesListAdapterBinding binding;
-        TextView textView;
         public ActivitiesViewHolder(ActivitiesListAdapterBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

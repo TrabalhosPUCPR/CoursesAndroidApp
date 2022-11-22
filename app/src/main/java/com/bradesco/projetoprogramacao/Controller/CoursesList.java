@@ -40,7 +40,6 @@ public class CoursesList extends AppCompatActivity {
                 int id = result.getData().getIntExtra("id", -1);
                 Course course = service.get(id);
                 course.setCompleted(true);
-                CourseService service = new CourseService(this);
                 service.edit(course, course.getId());
                 int index = result.getData().getIntExtra("position", -1);
                 coursesAdapter.updateCourseList(service.getList(), index);
