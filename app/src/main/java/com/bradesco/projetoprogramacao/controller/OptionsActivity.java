@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
-import com.bradesco.projetoprogramacao.controller.sandBox.SandboxActivity;
+import com.bradesco.projetoprogramacao.controller.codeRunner.SandboxActivity;
 import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
 
 import java.util.Objects;

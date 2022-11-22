@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".controller.playActivitiesFragments.ActivitiesQuestionFragment">
-
     <data>
         <variable
             name="activity"
@@ -11,9 +10,6 @@
         <variable
             name="courseName"
             type="String" />
-        <variable
-            name="page"
-            type="com.bradesco.projetoprogramacao.model.course.Page" />
     </data>
 
     <FrameLayout
@@ -24,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="15dp"
-            android:layout_marginTop="15dp">
+            android:padding="15dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,38 +49,38 @@
                 android:id="@+id/questionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{page.paragraphs}"
+                android:text="@{activity.page.paragraphs}"
                 android:textSize="15sp"
                 android:textColor="@color/white"
                 android:scrollbars="vertical"/>
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="bottom"
-        android:layout_margin="20dp"
-        android:background="@drawable/outlinedbox"
-        android:padding="20dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/expected_output"
-            android:textColor="@color/consoleColor"/>
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/round_corners_shape"
-            android:alpha="0.4"
-            android:backgroundTint="@color/consoleColor"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{activity.expectedOutput}"
-            android:textSize="19sp"
-            android:textColor="@color/consoleColor"/>
-    </LinearLayout>
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:background="@drawable/outlinedbox"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expected_output"
+                android:textColor="@color/consoleColor"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/round_corners_shape"
+                android:alpha="0.4"
+                android:backgroundTint="@color/consoleColor"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{activity.expectedOutput}"
+                android:textSize="19sp"
+                android:textColor="@color/consoleColor"/>
+        </LinearLayout>
     </FrameLayout>
 </layout>

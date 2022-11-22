@@ -6,7 +6,6 @@
     <string name="option3_optionActivity">Sandbox, do whatever you like!</string>
     <string name="btn_start_learning_optMenu">Start Learning!</string>
     <string name="btn_continue_learning_optMenu">Continue Learning!</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Continue">Continue</string>
     <string name="congratulationsMessage">Good Job!</string>
@@ -34,4 +33,6 @@
     <string name="complete">Complete</string>
     <string name="expected_output">Expected output:</string>
     <string name="question">Question</string>
+    <string name="title_activity_play">PlayActivity</string>
+    <string name="code">Code</string>
 </resources>

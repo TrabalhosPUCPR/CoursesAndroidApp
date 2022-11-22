@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bradesco.projetoprogramacao.R;
-import com.bradesco.projetoprogramacao.controller.playActivitiesFragments.PlayActivities;
+import com.bradesco.projetoprogramacao.controller.playActivityFragments.PlayActivities;
 import com.bradesco.projetoprogramacao.databinding.ActivitiesListAdapterBinding;
 import com.bradesco.projetoprogramacao.model.course.Activities;
 import com.bradesco.projetoprogramacao.model.services.localServices.DifficultyService;

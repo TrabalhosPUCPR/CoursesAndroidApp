@@ -3,15 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".controller.sandBox.SandboxActivity">
-    <data>
-        <variable
-            name="running"
-            type="Boolean"/>
-        <variable
-            name="consoleOutput"
-            type="String"/>
-    </data>
+    tools:context=".controller.codeRunner.SandboxActivity">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +15,7 @@
             android:orientation="vertical"
             android:background="@drawable/stroke_shape"
             android:clickable="false">
-            <com.bradesco.projetoprogramacao.controller.sandBox.IdeCodeParser
+            <com.bradesco.projetoprogramacao.controller.codeRunner.IdeCodeParser
                 android:id="@+id/editText_code_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,14 +79,11 @@
                         android:layout_marginTop="25dp"
                         android:padding="10dp"
                         android:layout_marginBottom="35dp">
-                        <TextView
+                        <com.bradesco.projetoprogramacao.controller.codeRunner.RunnerCli
                             android:id="@+id/consoleText"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text=""
                             android:alpha="0.8"
-                            android:textColor="@color/consoleColor"
-                            android:scrollbars="vertical|horizontal"
                             android:scrollbarThumbVertical="@drawable/scrollbar"
                             android:scrollbarThumbHorizontal="@drawable/scrollbar"
                             android:scrollbarDefaultDelayBeforeFade="5"

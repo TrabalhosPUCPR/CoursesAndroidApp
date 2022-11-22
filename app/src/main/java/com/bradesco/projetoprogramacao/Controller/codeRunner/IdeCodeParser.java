@@ -1,14 +1,10 @@
-package com.bradesco.projetoprogramacao.controller.sandBox;
+package com.bradesco.projetoprogramacao.controller.codeRunner;
 
 import android.content.Context;
-import android.text.Layout;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
-import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class IdeCodeParser extends TextInputEditText {
