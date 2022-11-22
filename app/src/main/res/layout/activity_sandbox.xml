@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/stroke_shape"
+            android:background="@color/ide_background_color"
             android:clickable="false">
             <com.bradesco.projetoprogramacao.controller.codeRunner.IdeCodeParser
                 android:id="@+id/editText_code_area"
@@ -87,7 +87,8 @@
                             android:scrollbarThumbVertical="@drawable/scrollbar"
                             android:scrollbarThumbHorizontal="@drawable/scrollbar"
                             android:scrollbarDefaultDelayBeforeFade="5"
-                            android:gravity="bottom"/>
+                            android:gravity="bottom"
+                            android:freezesText="true"/>
                     </FrameLayout>
                 </FrameLayout>
             </FrameLayout>

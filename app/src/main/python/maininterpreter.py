@@ -88,6 +88,11 @@ def consolestring():
     return mes
 
 
+def clearlogs():
+    global log
+    if 'log' in globals():
+        log.clearlog()
+
 def stopcode():
     global runner_thread, log
     stop_thread(runner_thread)

@@ -46,6 +46,10 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
         setTextColor(getColor(R.id.consoleText));
         this.outputedText = "";
         this.finishListener = null;
+        setOnLongClickListener(view -> {
+            clearTerminal();
+            return false;
+        });
     }
 
     public String getOutputedText() {
@@ -54,6 +58,16 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
+    }
+
+    public void clearTerminal(){
+        if(running) return;
+        setText("");
+        try {
+            pythonCodeRunner.clearLogs();
+        } catch (Throwable e) {
+            appendColoredText("\nCould not clear terminal\n", R.color.consoleRedFont);
+        }
     }
 
     public void runCode(String code){
@@ -105,6 +119,10 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
             this.module = python.getModule("maininterpreter");;
             this.mainActivity = activity;
             this.runner = new Runner();
+        }
+
+        public void clearLogs() throws Throwable {
+            module.callAttrThrows("clearlogs");
         }
 
         @Override
