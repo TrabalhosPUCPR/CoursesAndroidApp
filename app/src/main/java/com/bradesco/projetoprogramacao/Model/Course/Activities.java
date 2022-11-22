@@ -4,7 +4,7 @@ public class Activities{
     private int id, courseId, difficulty;
     private Page page;
     private String name, expectedOutput, desc;
-    private boolean completed;
+    private boolean completed, expanded;
 
     public Activities(int id, String name, String desc, String expectedOutput, int difficulty, Page page, int courseId) {
         this.id = id;
@@ -15,6 +15,7 @@ public class Activities{
         this.desc = desc;
         this.difficulty = difficulty;
         this.completed = false;
+        this.expanded = false;
     }
 
     public Activities(String name, String desc, String expectedOutput, int difficulty, Page page) {
@@ -88,5 +89,13 @@ public class Activities{
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void expand() {
+        this.expanded = !this.expanded;
     }
 }

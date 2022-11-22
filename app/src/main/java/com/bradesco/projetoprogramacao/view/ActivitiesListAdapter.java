@@ -46,7 +46,6 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
         DifficultyService difficultyService = new DifficultyService(context);
         holder.binding.adapterTextDifficulty.setText(difficultyService.get(this.activities.get(position).getDifficulty()));
         holder.binding.adapterBtnPlay.setOnClickListener(view -> {
-            // TODO: 11/21/2022 play activity
             Intent intent = new Intent(this.context, PlayActivities.class);
             intent.putExtra("id", activities.get(position).getId());
             intent.putExtra("type", 1);
@@ -57,6 +56,16 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
         }else{
             holder.binding.adapterCompleteCheckMark.setVisibility(View.GONE);
         }
+        if(activities.get(position).isExpanded()){
+            holder.binding.adapterExpandableArea.setVisibility(View.VISIBLE);
+        }else{
+            holder.binding.adapterExpandableArea.setVisibility(View.GONE);
+        }
+
+        holder.binding.adapterLayout.setOnClickListener(view -> {
+            activities.get(position).expand();
+            notifyItemChanged(position);
+        });
     }
 
     @Override

@@ -218,9 +218,17 @@ public class Course {
         loops.setEndingQuestions(questions);
 
         ArrayList<Activities> activities = new ArrayList<>();
-        Page page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using a simple while loop");
-        activities.add(new Activities("While Looping", "Simple activity to practice loops", "12345", 1, page));
+        Page page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using, this time, a recursive function");
+        activities.add(new Activities("Recursive loops", "Simple activity to practice recursive functions", "12345", 2, page));
+
+        page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using, this time, a for loop");
+        activities.add(new Activities("For Looping", "Simple activity to practice for loops", "12345", 1, page));
+
+        page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using a simple while loop");
+        activities.add(new Activities("While Looping", "Simple activity to practice while loops", "12345", 1, page));
+
         loops.setActivities(activities);
+
         return loops;
     }
 }

@@ -95,8 +95,9 @@ public class questionFragment extends Fragment{
         radioButtons.get(question.getCorrectAnswerIndex()).setBackgroundColor(getResources().getColor(R.color.correctAnswer));
     }
 
-    static protected void nextQuestion(View root){
+    private void nextQuestion(View root){
         if (CourseActivity.currentQuestion == CourseActivity.course.getEndingQuestions().size() - 1){
+            CourseActivity.launchActivities(getContext());
             Navigation.findNavController(root).navigate(R.id.action_questionFragment_to_courseEndFragment);
         }else{
             CourseActivity.currentQuestion++;

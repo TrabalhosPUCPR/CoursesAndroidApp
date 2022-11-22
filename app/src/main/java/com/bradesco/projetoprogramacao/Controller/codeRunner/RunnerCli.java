@@ -20,7 +20,7 @@ import com.chaquo.python.android.AndroidPlatform;
 public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
     private Activity activity;
     private boolean running;
-    private String outputedText;
+    private String outputtedText;
     private PythonCodeRunner pythonCodeRunner;
     private PythonCodeFinishListener finishListener;
 
@@ -44,7 +44,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
         setHorizontallyScrolling(true);
         setVerticalScrollBarEnabled(true);
         setTextColor(getColor(R.id.consoleText));
-        this.outputedText = "";
+        this.outputtedText = "";
         this.finishListener = null;
         setOnLongClickListener(view -> {
             clearTerminal();
@@ -52,8 +52,8 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
         });
     }
 
-    public String getOutputedText() {
-        return outputedText;
+    public String getOutputtedText() {
+        return outputtedText;
     }
 
     public void setActivity(Activity activity) {
@@ -73,7 +73,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
     public void runCode(String code){
         if(code.isEmpty()) return;
         interrupt();
-        this.outputedText = "";
+        this.outputtedText = "";
         pythonCodeRunner = new PythonCodeRunner(code);
         pythonCodeRunner.start();
     }
@@ -116,7 +116,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
             if(!Python.isStarted()) Python.start(new AndroidPlatform(getContext()));
             Python python = Python.getInstance();
             this.code = text;
-            this.module = python.getModule("maininterpreter");;
+            this.module = python.getModule("maininterpreter");
             this.mainActivity = activity;
             this.runner = new Runner();
         }
@@ -137,7 +137,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
                     PyObject o = module.callAttr("consolestring");
                     if(o == null) return;
                     String outputText = o.toString();
-                    outputedText += outputText;
+                    outputtedText += outputText;
                     appendNormalText(outputText);
                 };
                 r.run();
@@ -147,7 +147,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
                 }
                 running = false;
                 appendColoredText("\nCode stopped!\n", getColor(R.color.consoleRedFont));
-                if(finishListener != null) finishListener.onFinish(outputedText);
+                if(finishListener != null) mainActivity.runOnUiThread(() -> finishListener.onFinish(outputtedText));
             }catch (InterruptedException ignored){
             } catch (Throwable e){
                 appendColoredText("\nError: "+e.getMessage()+"\n", getColor(R.color.consoleRedFont));

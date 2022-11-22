@@ -8,6 +8,7 @@
             type="com.bradesco.projetoprogramacao.model.course.Activities" />
     </data>
     <LinearLayout
+        android:id="@+id/adapter_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +80,8 @@
                     app:fabCustomSize="40dp"
                     android:src="@drawable/ic_action_play"
                     android:layout_gravity="end"
-                    android:contentDescription="@string/play" />
+                    android:contentDescription="@string/play"
+                    android:backgroundTint="@color/purple_200"/>
             </FrameLayout>
         </LinearLayout>
 

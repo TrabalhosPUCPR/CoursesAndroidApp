@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.bradesco.projetoprogramacao.model.course.Activities;
 
+import java.util.ArrayList;
+
 public class ActivitiesService extends Service<Activities> {
 
     public ActivitiesService(@Nullable Context context) {
@@ -55,5 +57,18 @@ public class ActivitiesService extends Service<Activities> {
         }
         c.close();
         return null;
+    }
+
+    public ArrayList<Activities> getAllWithCourseId(int id){
+        Cursor c = getReadableDatabase().rawQuery("SELECT "+this.columns[0]+" FROM " + this.TABLE_NAME + " WHERE " + this.columns[6] + "=" + id, null);
+        ArrayList<Activities> list = new ArrayList<>();
+        if(c.moveToFirst()){
+            do{
+                Activities a = get(c.getInt(0));
+                list.add(a);
+            }while (c.moveToNext());
+        }
+        c.close();
+        return list;
     }
 }

@@ -1,5 +1,7 @@
 package com.bradesco.projetoprogramacao.controller.playActivityFragments;
 
+import static com.bradesco.projetoprogramacao.controller.playActivityFragments.PlayActivities.type;
+
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -7,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentActivityQuestionBinding;
 import com.bradesco.projetoprogramacao.model.services.localServices.ActivitiesService;
 import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
@@ -30,6 +34,16 @@ public class PlayQuestionFragment extends Fragment {
         binding.setActivity(service.get(PlayActivities.activityId));
         binding.setCourseName(courseService.get(binding.getActivity().getCourseId()).getTitle());
 
+        binding.txtViewExpectedOutput.setTextColor(ContextCompat.getColor(getContext(), R.color.consoleColor));
+
+        if (type == 1){
+            binding.txtViewExpectedOutput.setVisibility(View.GONE);
+        }else if (type == 2){
+            binding.txtViewExpectedOutput.setVisibility(View.VISIBLE);
+        }
+
+        service.close();
+        courseService.close();
         return root;
     }
 

@@ -1,8 +1,10 @@
 package com.bradesco.projetoprogramacao.controller.courseFragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -69,13 +71,16 @@ public class PageFragment extends Fragment {
         return root;
     }
 
-    static protected void nextPage(View root){
+    private void nextPage(View root){
         CourseActivity.currentPage++;
         if(CourseActivity.getChapter().getPages().size() == CourseActivity.currentPage) {
             if (!CourseActivity.nextChapter()) {
-                if (CourseActivity.course.getEndingQuestions().isEmpty() || CourseActivity.finished) {
+                if(CourseActivity.finished){
+                    CourseActivity.launchActivities(getContext());
                     Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_courseEndFragment);
-                } else {
+                    return;
+                }
+                if (!CourseActivity.course.getEndingQuestions().isEmpty()) {
                     Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_questionFragment);
                 }
                 CourseActivity.finished = true;
@@ -85,7 +90,7 @@ public class PageFragment extends Fragment {
         Navigation.findNavController(root).navigate(R.id.action_pageFragment_self);
     }
 
-    static protected void previousPage(View root){
+    private void previousPage(View root){
         if(CourseActivity.currentPage == 0){
             if(!CourseActivity.previousChapter()){
                 Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_coverFragment2, null, null, null);

@@ -60,6 +60,9 @@ public class CourseService extends Service<Course> {
             activity.setCourseId(course.getId());
             activitiesService.add(activity);
         }
+        chaptersService.close();
+        activitiesService.close();
+        questionService.close();
         return course.getId() > 0;
     }
 
@@ -68,12 +71,19 @@ public class CourseService extends Service<Course> {
         super.remove(id);
         ChaptersService chaptersService = new ChaptersService(context);
         QuestionService questionService = new QuestionService(context);
+        ActivitiesService activitiesService = new ActivitiesService(context);
         for(Chapters c : chaptersService.getAllWithCourseId(id)){
             chaptersService.remove(c.getId());
         }
         for(Question q : questionService.getAllWithCourseId(id)){
             questionService.remove(q.getId());
         }
+        for(Activities a : activitiesService.getAllWithCourseId(id)){
+            activitiesService.remove(a.getId());
+        }
+        activitiesService.close();
+        chaptersService.close();
+        questionService.close();
         return true;
     }
 
@@ -88,11 +98,16 @@ public class CourseService extends Service<Course> {
         if(c.moveToFirst()){
             ChaptersService chaptersService = new ChaptersService(context);
             QuestionService questionService = new QuestionService(context);
+            ActivitiesService activitiesService = new ActivitiesService(context);
             Course course = new Course(c.getString(1), c.getString(2), c.getString(3), c.getInt(5));
             course.setCompleted(c.getInt(4) != 0);
             course.setChapters(chaptersService.getAllWithCourseId(id));
             course.setEndingQuestions(questionService.getAllWithCourseId(id));
+            course.setActivities(activitiesService.getAllWithCourseId(id));
             course.setId(id);
+            chaptersService.close();
+            questionService.close();
+            activitiesService.close();
             c.close();
             return course;
         }
@@ -112,6 +127,8 @@ public class CourseService extends Service<Course> {
                 course.setChapters(chaptersService.getAllWithCourseId(c.getInt(0)));
                 course.setEndingQuestions(questionService.getAllWithCourseId(c.getInt(0)));
                 course.setId(c.getInt(0));
+                chaptersService.close();
+                questionService.close();
                 list.add(course);
             }while (c.moveToNext());
         }

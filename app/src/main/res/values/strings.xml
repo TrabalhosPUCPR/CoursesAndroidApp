@@ -27,12 +27,11 @@
     <string name="play">Play</string>
     <string name="title_placeholder">Title</string>
     <string name="title_activity_activities_options">ActivitiesOptions</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_code">Code</string>
     <string name="complete">Complete</string>
     <string name="expected_output">Expected output:</string>
     <string name="question">Question</string>
     <string name="title_activity_play">PlayActivity</string>
     <string name="code">Code</string>
+    <string name="time_to_practice">Time to practice!</string>
 </resources>

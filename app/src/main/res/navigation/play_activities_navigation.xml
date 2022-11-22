@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/nav_activity_ide"
         android:name="com.bradesco.projetoprogramacao.controller.playActivityFragments.IdeFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_code"
         tools:layout="@layout/fragment_activity_ide"/>
 
     <fragment
         android:id="@+id/nav_activity_question"
         android:name="com.bradesco.projetoprogramacao.controller.playActivityFragments.PlayQuestionFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/question"
         tools:layout="@layout/fragment_activity_question" />
 
 </navigation>

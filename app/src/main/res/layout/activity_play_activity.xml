@@ -4,7 +4,30 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="?attr/actionBarSize">
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_action_foward_arrow"
+            app:iconGravity="end"
+            android:text="Finish"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="30dp"
+            app:backgroundTint="@color/consoleGreenFont"
+            android:visibility="gone"/>
+            <fragment
+                android:id="@+id/nav_host_fragment_activity_test"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/play_activities_navigation"/>
+    </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
@@ -12,19 +35,6 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         app:menu="@menu/play_activity_menu"
-        android:layout_gravity="bottom"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="?attr/actionBarSize">
-        <fragment
-            android:id="@+id/nav_host_fragment_activity_test"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/play_activities_navigation"/>
-    </FrameLayout>
-
+        android:layout_gravity="bottom"
+        android:animateLayoutChanges="true"/>
 </FrameLayout>

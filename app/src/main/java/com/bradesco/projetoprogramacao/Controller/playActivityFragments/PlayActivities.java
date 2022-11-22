@@ -1,6 +1,7 @@
 package com.bradesco.projetoprogramacao.controller.playActivityFragments;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.ActivityPlayActivityBinding;
@@ -15,13 +16,16 @@ public class PlayActivities extends AppCompatActivity {
 
     private ActivityPlayActivityBinding binding;
     protected static int activityId;
+    protected static int posIndex;
+    protected static int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         activityId = getIntent().getIntExtra("id", -1);
-        int type = getIntent().getIntExtra("type", -1);
+        posIndex = getIntent().getIntExtra("position", -1);
+        type = getIntent().getIntExtra("type", -1);
 
         binding = ActivityPlayActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -32,12 +36,17 @@ public class PlayActivities extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_test);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        if(type == 1){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_back_arrow);
-        }else{
-            getSupportActionBar().hide();
-        }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(type == 1){
+            finish();
+        }
+    }
 }

@@ -35,7 +35,15 @@ public class ActivitiesList extends AppCompatActivity {
         this.service = new ActivitiesService(this);
 
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            //int id = result.getResultCode();
+            if (result.getResultCode() == RESULT_OK){
+                int activityId = result.getData().getIntExtra("id", -1);
+                int position = result.getData().getIntExtra("position", -1);
+                ActivitiesService service = new ActivitiesService(this);
+
+
+                service.close();
+                adapter.notifyItemChanged(position);
+            }
         });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
