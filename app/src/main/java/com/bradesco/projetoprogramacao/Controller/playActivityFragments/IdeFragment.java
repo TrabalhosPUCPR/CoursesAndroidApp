@@ -55,7 +55,7 @@ public class IdeFragment extends Fragment implements PythonCodeFinishListener {
             fabFinish.setVisibility(View.GONE);
             String text = codeArea.toString();
             pythonRunnerConsole.runCode(text);
-            txtViewExpected.setTextColor(ContextCompat.getColor(getContext(), R.color.consoleColor));
+            txtViewExpected.setTextColor(ContextCompat.getColor(getContext(), R.color.consolefontcolor));
         });
         stopFab.setOnClickListener(view -> {
             // STOP

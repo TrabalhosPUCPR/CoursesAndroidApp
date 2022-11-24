@@ -102,7 +102,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
     }
 
     private void appendNormalText(String text){
-        appendColoredText(text, getColor(R.color.consoleColor));
+        appendColoredText(text, getColor(R.color.consolefontcolor));
     }
 
     private class PythonCodeRunner extends Thread{

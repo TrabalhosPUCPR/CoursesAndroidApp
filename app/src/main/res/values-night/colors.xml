@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="consoleColor">#373737</color>
+    <color name="consolefontcolor">#D5D5D5</color>
     <color name="run_fab">#45EA7C</color>
     <color name="consoleRedFont">#AA0C00</color>
     <color name="consoleGreenFont">#5DE662</color>
+    <color name="consoleColor">#2C2C2C</color>
 </resources>

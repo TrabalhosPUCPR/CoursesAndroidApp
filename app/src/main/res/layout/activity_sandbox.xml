@@ -63,13 +63,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/console_shape"
+                    android:backgroundTint="@color/consoleColor"
                     android:translationY="34dp"
                     android:clipChildren="false"
                     android:clipToPadding="false">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:backgroundTint="@color/consoleColor"
+                        android:backgroundTint="@color/consolefontcolor"
                         android:layout_margin="2dp"
                         android:text="@string/console"/>
                     <FrameLayout
