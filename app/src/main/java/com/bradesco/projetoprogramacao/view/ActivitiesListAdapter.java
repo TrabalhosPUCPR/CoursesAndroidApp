@@ -52,6 +52,7 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
         holder.binding.adapterBtnPlay.setOnClickListener(view -> {
             Intent intent = new Intent(this.context, PlayActivities.class);
             intent.putExtra("id", activities.get(position).getId());
+            intent.putExtra("position", position);
             intent.putExtra("type", 1);
             resultLauncher.launch(intent);
         });

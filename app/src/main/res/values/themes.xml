@@ -11,7 +11,6 @@
         <item name="colorSecondaryContainer">#823AA1</item>
         <item name="colorOnSecondaryContainer">@color/white</item>
         <item name="colorBackgroundFloating">@color/white</item>
-        <item name="strokeWidth">1dp</item>
 
         <item name="textAppearanceBody1">@style/TextAppearance.AppCompat.Small</item>
 

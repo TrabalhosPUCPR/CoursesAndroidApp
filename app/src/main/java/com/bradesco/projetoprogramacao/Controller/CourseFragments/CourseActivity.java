@@ -40,6 +40,7 @@ public class CourseActivity extends AppCompatActivity {
         bottomAppBar = root.findViewById(R.id.course_bottom_menuBar);
         binding.courseBottomMenuBar.setNavigationOnClickListener(view -> finish());
         binding.courseBottomMenuBar.setOnMenuItemClickListener(null);
+        binding.courseBottomMenuBar.setNavigationIconTint(getResources().getColor(R.color.black));
         courseId = getIntent().getIntExtra("id", -1);
         course = courseService.get(courseId);
         indexPosition = getIntent().getIntExtra("position", -1);

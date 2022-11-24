@@ -122,10 +122,59 @@ public class Course {
 
     public static ArrayList<Course> getDefaultCourses(){
         ArrayList<Course> courses = new ArrayList<>();
+        courses.add(createDefault_Introduction());
         courses.add(createDefault_DataTypes());
         courses.add(createDefault_Loops());
 
         return courses;
+    }
+
+    public static Course createDefault_Introduction(){
+        Course intro = new Course("Introduction", "Welcome to puppy code!", "In this course, you will understand the basics of the app", 1);
+
+        ArrayList<Chapters> chapters = new ArrayList<>();
+
+        chapters.add(new Chapters("PuppyCode", "In this chapter, you will understand what PuppyCode is"));
+        chapters.add(new Chapters("Programming Languages", ""));
+        chapters.add(new Chapters("Python programming language", "Here, you will learn a very basic usage of python on PuppyCode app and why we use it"));
+        chapters.add(new Chapters("Completing an activity", "Here, you will understand how to play activities available in courses"));
+        chapters.add(new Chapters("Final notes", ""));
+
+        // chapter 1
+        ArrayList<Page> pages = new ArrayList<>();
+        pages.add(new Page("Welcome to PuppyCode!\nHere, you will be able to learn various different things about programming and even improve your ability!"));
+        pages.add(new Page("PuppyCode provides space for you to read various courses with a vast amount of content and practice them with many different quizzes and activities"));
+        pages.add(new Page("We hope you learn a lot from them and have fun doing so!"));
+        chapters.get(0).setPages(pages);
+
+        //chapter 2
+        pages = new ArrayList<>();
+        pages.add(new Page("Programming languages are notations to write programs, the way we communicate with a computer to command it to do something\n\nThere are many of these, a few examples are Python, Java, C++, etc."));
+        pages.add(new Page("For one to understand them, a few concepts must be known, like what are variables, conditionals, etc."));
+        pages.add(new Page("You can say variables are data holders that can change at any time, they can hold numbers, words, any many other things.\nAnd conditionals are checks we do to verify if something is true or false"));
+        chapters.get(1).setPages(pages);
+
+        //chapter 3
+        pages = new ArrayList<>();
+        pages.add(new Page("Python is a very efficient and simple programming language, you can do an infinite amount of things with ease"));
+        pages.add(new Page("To declare a variable, we first give its name, and with equals symbol, give its value, for example: \"var = 5\"\nHere, the variable var, is a number with its value being 5"));
+        pages.add(new Page("Before going to the next chapter, it will be useful to know what command is used to print something in the terminal, in python, the command is print(), and inside the parenthesis, we put the variables we want to print, for example, when var is equals to 5, like in the last page, and we send the command print(var), the number 5 will appear in the terminal"));
+        chapters.get(2).setPages(pages);
+
+        //chapter 4
+        pages = new ArrayList<>();
+        pages.add(new Page("Activities normally appear at the end of courses, they are there so you can put in practice what you've learned"));
+        pages.add(new Page("To do them, you must print in the terminal, using the area to code, exactly what is written under \"Expected Output\", once you do se, a button will appear to allow you to complete and exit the activity"));
+        chapters.get(3).setPages(pages);
+
+        //chapter 5
+        pages = new ArrayList<>();
+        pages.add(new Page("Learning to program takes a considerable amount of time and patience, so if you find difficulty completing an activity, don't feel discouraged!\nIf you find something difficult, always remember to do more research and search online for more answers or restart the courses available here, always go after more knowledge"));
+        pages.add(new Page("Thank you for using PuppyCode, and wish you good studies!"));
+        chapters.get(4).setPages(pages);
+
+        intro.setChapters(chapters);
+        return intro;
     }
 
     // DEFAULT COURSES

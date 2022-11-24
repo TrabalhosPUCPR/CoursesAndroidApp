@@ -1,10 +1,7 @@
 package com.bradesco.projetoprogramacao.controller.courseFragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -35,7 +32,6 @@ public class PageFragment extends Fragment {
         Page page = CourseActivity.getPage();
 
         TextView chapterTitle = root.findViewById(R.id.page_chapterTitle);
-        TextView courseTitle = root.findViewById(R.id.page_CourseTitle);
         LinearLayout contentArea = root.findViewById(R.id.contentArea);
 
         TextView chPgNumber = root.findViewById(R.id.ChPgNumber);
@@ -50,7 +46,6 @@ public class PageFragment extends Fragment {
         }
 
         chapterTitle.setText(CourseActivity.getChapter().getTitle());
-        courseTitle.setText(CourseActivity.course.getTitle());
 
         TextView text = new TextView(getContext());
 
@@ -75,15 +70,12 @@ public class PageFragment extends Fragment {
         CourseActivity.currentPage++;
         if(CourseActivity.getChapter().getPages().size() == CourseActivity.currentPage) {
             if (!CourseActivity.nextChapter()) {
-                if(CourseActivity.finished){
-                    CourseActivity.launchActivities(getContext());
-                    Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_courseEndFragment);
-                    return;
-                }
                 if (!CourseActivity.course.getEndingQuestions().isEmpty()) {
                     Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_questionFragment);
+                } else {
+                    CourseActivity.launchActivities(getContext());
+                    Navigation.findNavController(root).navigate(R.id.action_pageFragment_to_courseEndFragment);
                 }
-                CourseActivity.finished = true;
                 return;
             }
         }

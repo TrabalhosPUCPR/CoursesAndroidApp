@@ -61,11 +61,7 @@ public class SandboxActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.btn_save){
-            // TODO: 11/4/2022 save the code
-        }else{
-            finish();
-        }
+        finish();
         return false;
     }
 
