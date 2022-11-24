@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.controller.codeRunner.SandboxActivity;
+import com.bradesco.projetoprogramacao.controller.courseFragments.CourseActivity;
+import com.bradesco.projetoprogramacao.model.course.Course;
 import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
 
+import java.util.List;
 import java.util.Objects;
 
 public class OptionsActivity extends AppCompatActivity {
@@ -22,8 +25,11 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_person);
+        Button startLearning = findViewById(R.id.optMenu_start_learning);
+        startLearning.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CoursesList.class);
+            startActivity(intent);
+        });
 
         Button button = findViewById(R.id.btn_option1_optionsMenu);
         button.setOnClickListener(view -> {
@@ -51,9 +57,12 @@ public class OptionsActivity extends AppCompatActivity {
         coursesAmount.setText(String.valueOf(courseService.size()));
         if(courseService.size() == courseService.getCompletedCourses().size()){
             findViewById(R.id.completedStars).setVisibility(View.VISIBLE);
+            findViewById(R.id.optMenu_start_learning).setVisibility(View.INVISIBLE);
         }else{
             findViewById(R.id.completedStars).setVisibility(View.INVISIBLE);
+            findViewById(R.id.optMenu_start_learning).setVisibility(View.VISIBLE);
         }
+        courseService.close();
         super.onResume();
     }
 

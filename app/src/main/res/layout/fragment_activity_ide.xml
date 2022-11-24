@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.playActivityFragments.IdeFragment">
+    tools:context=".controller.playActivityFragments.IdeFragment"
+    android:layout_marginBottom="14dp">
 
     <include layout="@layout/activity_sandbox"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

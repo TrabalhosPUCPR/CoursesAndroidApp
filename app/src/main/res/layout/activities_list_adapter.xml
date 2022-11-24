@@ -6,6 +6,9 @@
         <variable
             name="activities"
             type="com.bradesco.projetoprogramacao.model.course.Activities" />
+        <variable
+            name="courseName"
+            type="String" />
     </data>
     <LinearLayout
         android:id="@+id/adapter_layout"
@@ -13,8 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/activities_adapter_shape"
-        android:layout_margin="20dp"
-        android:padding="15dp">
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,16 +34,39 @@
                     android:id="@+id/adapter_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?colorOnSecondaryContainer"
                     android:text="@{activities.name}"
                     android:ellipsize="end"
                     android:maxEms="8"
                     android:maxLines="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="?colorOnSecondaryContainer"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/from"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?colorOnSecondaryContainer"
+                    android:textSize="11sp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@{courseName}"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="?colorOnSecondaryContainer"
+                    android:text="@string/course"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/adapter_complete_checkMark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                app:tint="?colorOnSecondaryContainer"
                 android:src="@drawable/ic_action_check"
                 android:contentDescription="@string/complete"/>
         </FrameLayout>
@@ -58,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{activities.desc}"
                 android:ellipsize="end"
+                android:textColor="?colorOnSecondaryContainer"
                 android:textIsSelectable="false"
                 android:maxLines="3"/>
             <FrameLayout
@@ -69,6 +98,7 @@
                     android:id="@+id/adapter_text_difficulty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?colorOnSecondaryContainer"
                     android:text="Difficulty"
                     android:layout_gravity="center|start"
                     android:textSize="15sp"
@@ -81,7 +111,8 @@
                     android:src="@drawable/ic_action_play"
                     android:layout_gravity="end"
                     android:contentDescription="@string/play"
-                    android:backgroundTint="@color/purple_200"/>
+                    app:borderWidth="0dp"
+                    android:tint="@color/black"/>
             </FrameLayout>
         </LinearLayout>
 

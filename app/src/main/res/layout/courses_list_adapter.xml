@@ -24,12 +24,14 @@
                 android:id="@+id/adapter_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?colorOnPrimaryContainer"
                 android:text="Placeholder"
                 android:ellipsize="end"
                 android:maxEms="8"
                 android:maxLines="1"/>
             <TextView
                 android:layout_width="wrap_content"
+                android:textColor="?colorOnPrimaryContainer"
                 android:layout_height="wrap_content"
                 android:text=" - "/>
             <TextView
@@ -37,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Subtitle Placeholder"
+                android:textColor="?colorOnPrimaryContainer"
                 android:textSize="11sp"
                 android:ellipsize="end"
                 android:maxEms="17"
@@ -47,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            app:tint="?colorOnPrimaryContainer"
             android:src="@drawable/ic_action_check"
             android:contentDescription="@string/complete"/>
     </FrameLayout>
@@ -69,7 +73,8 @@ This is a placeholder description just so i can see how it looks
 This is a placeholder description just so i can see how it looks"
             android:ellipsize="end"
             android:textIsSelectable="false"
-            android:maxLines="3"/>
+            android:maxLines="3"
+            android:textColor="?colorOnPrimaryContainer"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +85,7 @@ This is a placeholder description just so i can see how it looks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Difficulty"
+                android:textColor="?colorOnPrimaryContainer"
                 android:layout_gravity="center|start"
                 android:textSize="15sp"
                 android:layout_marginStart="10dp"/>

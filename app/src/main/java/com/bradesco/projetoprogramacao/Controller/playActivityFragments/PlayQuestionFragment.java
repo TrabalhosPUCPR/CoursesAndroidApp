@@ -33,17 +33,15 @@ public class PlayQuestionFragment extends Fragment {
 
         binding.setActivity(service.get(PlayActivities.activityId));
         binding.setCourseName(courseService.get(binding.getActivity().getCourseId()).getTitle());
-
-        binding.txtViewExpectedOutput.setTextColor(ContextCompat.getColor(getContext(), R.color.consoleColor));
-
-        if (type == 1){
-            binding.txtViewExpectedOutput.setVisibility(View.GONE);
-        }else if (type == 2){
-            binding.txtViewExpectedOutput.setVisibility(View.VISIBLE);
-        }
-
         service.close();
         courseService.close();
+
+        if (type == 1){
+            binding.txtViewTimetopractice.setVisibility(View.GONE);
+        }else if (type == 2){
+            binding.txtViewTimetopractice.setVisibility(View.VISIBLE);
+        }
+
         return root;
     }
 

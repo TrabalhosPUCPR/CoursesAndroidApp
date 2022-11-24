@@ -8,13 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="ide_background_color">#2B2B2B</color>
-    <color name="consoleColor">#989898</color>
+    <color name="consoleColor">#E6E6E6</color>
     <color name="correctAnswer">#3BB63D</color>
     <color name="wrongAnswer">#B81E1E</color>
     <color name="clickableConsoleButton">#636363</color>
     <color name="stopRunning_fab">#FF0000</color>
     <color name="stopNotRunning_fab">#373737</color>
     <color name="run_fab">#45EA7C</color>
-    <color name="consoleRedFont">#AA0C00</color>
-    <color name="consoleGreenFont">#5DE662</color>
+    <color name="consoleRedFont">#920A00</color>
+    <color name="consoleGreenFont">#00FF09</color>
+    <color name="courseadapter1">#039BE5</color>
+    <color name="courseadapter2">#00ACC1</color>
 </resources>

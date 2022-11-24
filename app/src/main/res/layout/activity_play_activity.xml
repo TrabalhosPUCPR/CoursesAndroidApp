@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             app:icon="@drawable/ic_action_foward_arrow"
             app:iconGravity="end"
-            android:text="Finish"
+            android:text="@string/finish"
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="30dp"

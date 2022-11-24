@@ -14,8 +14,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ide_background_color">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,7 +25,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time_to_practice"
-                android:textColor="@color/white"
                 android:textSize="35sp"
                 android:layout_marginBottom="20dp"/>
             <LinearLayout
@@ -38,20 +36,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{activity.name}"
-                    android:textSize="25sp"
-                    android:textColor="@color/white"/>
+                    android:textSize="25sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" - "
-                    android:textSize="14sp"
-                    android:textColor="@color/white"/>
+                    android:textSize="14sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{courseName}"
-                    android:textSize="13sp"
-                    android:textColor="@color/white"/>
+                    android:textSize="13sp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/questionTextView"
@@ -59,7 +54,6 @@
                 android:layout_height="wrap_content"
                 android:text="@{activity.page.paragraphs}"
                 android:textSize="15sp"
-                android:textColor="@color/white"
                 android:scrollbars="vertical"/>
         </LinearLayout>
         <LinearLayout
@@ -73,14 +67,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/expected_output"
-                android:textColor="@color/consoleColor"/>
+                android:text="@string/expected_output"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="@drawable/round_corners_shape"
                 android:alpha="0.4"
-                android:backgroundTint="@color/consoleColor"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"/>
             <TextView

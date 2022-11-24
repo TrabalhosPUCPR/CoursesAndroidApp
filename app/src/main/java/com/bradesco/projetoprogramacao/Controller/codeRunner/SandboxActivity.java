@@ -11,6 +11,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
@@ -38,7 +39,7 @@ public class SandboxActivity extends AppCompatActivity{
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_back_arrow);
         getSupportActionBar().setTitle(R.string.Sandbox);
 
-        IdeCodeParser codeArea = findViewById(R.id.editText_code_area);
+        EditText codeArea = findViewById(R.id.editText_code_area);
         RunnerCli pythonRunnerConsole = findViewById(R.id.consoleText);
         pythonRunnerConsole.setActivity(this);
 

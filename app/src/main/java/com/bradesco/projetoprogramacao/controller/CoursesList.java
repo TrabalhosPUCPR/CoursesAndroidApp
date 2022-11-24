@@ -22,14 +22,12 @@ public class CoursesList extends AppCompatActivity {
 
     RecyclerView rcvCourses;
     CoursesListAdapter coursesAdapter;
-    ActivityResultLauncher<Intent> resultOpenCourse;
-    CourseService service;
+    protected static ActivityResultLauncher<Intent> resultOpenCourse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses_list);
-        this.service = new CourseService(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Courses");
@@ -38,7 +36,9 @@ public class CoursesList extends AppCompatActivity {
         resultOpenCourse = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if(result.getResultCode() == RESULT_OK) {
                 int id = result.getData().getIntExtra("id", -1);
+                CourseService service = new CourseService(this);
                 Course course = service.get(id);
+                service.close();
                 course.setCompleted(true);
                 service.edit(course, course.getId());
                 int index = result.getData().getIntExtra("position", -1);
@@ -60,7 +60,14 @@ public class CoursesList extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(RecyclerView.VERTICAL);
         rcvCourses.setLayoutManager(llm);
-        coursesAdapter = new CoursesListAdapter(this, resultOpenCourse);
+        CourseService service = new CourseService(this);
+        coursesAdapter = new CoursesListAdapter(this, resultOpenCourse, service.getList());
+        service.close();
         rcvCourses.setAdapter(coursesAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

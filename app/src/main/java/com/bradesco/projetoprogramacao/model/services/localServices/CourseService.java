@@ -135,4 +135,25 @@ public class CourseService extends Service<Course> {
         c.close();
         return list;
     }
+
+    public ArrayList<Course> getUncompleteCourses(){
+        Cursor c = getWritableDatabase().rawQuery("SELECT * FROM " + this.TABLE_NAME + " WHERE " + this.columns[4] + "=0", null);
+        ArrayList<Course> list = new ArrayList<>();
+        if(c.moveToFirst()){
+            do {
+                ChaptersService chaptersService = new ChaptersService(context);
+                QuestionService questionService = new QuestionService(context);
+                Course course = new Course(c.getString(1), c.getString(2), c.getString(3), c.getInt(5));
+                course.setCompleted(c.getInt(4) != 0);
+                course.setChapters(chaptersService.getAllWithCourseId(c.getInt(0)));
+                course.setEndingQuestions(questionService.getAllWithCourseId(c.getInt(0)));
+                course.setId(c.getInt(0));
+                chaptersService.close();
+                questionService.close();
+                list.add(course);
+            }while (c.moveToNext());
+        }
+        c.close();
+        return list;
+    }
 }

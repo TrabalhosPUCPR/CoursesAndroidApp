@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <solid android:color="@color/white"/>
-    <stroke android:color="@color/black" android:width="4dp"/>
     <corners android:radius="20dp"/>
-    <gradient android:startColor="@color/teal_200" android:endColor="@color/white"/>
+    <solid android:color="#00B7CD"/>
 
 </shape>

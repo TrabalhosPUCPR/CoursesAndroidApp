@@ -28,10 +28,9 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
     List<Course> courses;
     ActivityResultLauncher<Intent> resultOpen;
 
-    public CoursesListAdapter(Context context, ActivityResultLauncher<Intent> resultOpen) {
+    public CoursesListAdapter(Context context, ActivityResultLauncher<Intent> resultOpen, List<Course> courses) {
         this.context = context;
-        CourseService courseService = new CourseService(context);
-        this.courses = courseService.getList();
+        this.courses = courses;
         this.resultOpen = resultOpen;
     }
 
@@ -70,6 +69,7 @@ public class CoursesListAdapter extends RecyclerView.Adapter<CoursesListAdapter.
         });
         DifficultyService difficultyService = new DifficultyService(this.context);
         holder.difficulty.setText(difficultyService.get(course.getDifficulty()));
+        difficultyService.close();
     }
 
     public void updateCourseList(List<Course> courses, int updatedIndex){

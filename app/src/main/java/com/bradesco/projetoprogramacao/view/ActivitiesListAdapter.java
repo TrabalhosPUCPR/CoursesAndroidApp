@@ -15,6 +15,7 @@ import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.controller.playActivityFragments.PlayActivities;
 import com.bradesco.projetoprogramacao.databinding.ActivitiesListAdapterBinding;
 import com.bradesco.projetoprogramacao.model.course.Activities;
+import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
 import com.bradesco.projetoprogramacao.model.services.localServices.DifficultyService;
 
 import java.util.List;
@@ -45,6 +46,9 @@ public class ActivitiesListAdapter extends RecyclerView.Adapter<ActivitiesListAd
         holder.binding.setActivities(this.activities.get(position));
         DifficultyService difficultyService = new DifficultyService(context);
         holder.binding.adapterTextDifficulty.setText(difficultyService.get(this.activities.get(position).getDifficulty()));
+        difficultyService.close();
+        CourseService courseService = new CourseService(context);
+        holder.binding.setCourseName(courseService.get(activities.get(position).getCourseId()).getTitle());
         holder.binding.adapterBtnPlay.setOnClickListener(view -> {
             Intent intent = new Intent(this.context, PlayActivities.class);
             intent.putExtra("id", activities.get(position).getId());

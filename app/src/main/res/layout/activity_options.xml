@@ -11,7 +11,6 @@
         android:id="@+id/banner_optionsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
         android:padding="10dp"
         android:minHeight="150dp"
         android:orientation="vertical">
@@ -25,8 +24,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/btn_star"
-                />
+                android:src="@android:drawable/btn_star"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +41,7 @@
                 android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Your Progress:"
+                android:text="@string/your_progress"
                 android:textAlignment="center"/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -68,11 +66,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="X"
+                    android:layout_marginRight="7dp"
                     android:textAlignment="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" courses completed!"
+                    android:text="@string/courses_completed"
                     android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>

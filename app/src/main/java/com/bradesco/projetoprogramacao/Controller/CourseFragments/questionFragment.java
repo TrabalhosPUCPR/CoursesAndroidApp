@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class questionFragment extends Fragment{
 
     private Button answerButton;
-    private boolean answered;
+    private boolean answered = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,10 @@ public class questionFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        com.bradesco.projetoprogramacao.databinding.FragmentQuestionBinding binding = FragmentQuestionBinding.inflate(getLayoutInflater());
+        FragmentQuestionBinding binding = FragmentQuestionBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
+
+        CourseActivity.bottomAppBar.setOnMenuItemClickListener(null);
 
         TextView text = root.findViewById(R.id.ChapterNumber);
         text.setText(String.format(getResources().getString(R.string.QuestionN), CourseActivity.currentQuestion + 1));

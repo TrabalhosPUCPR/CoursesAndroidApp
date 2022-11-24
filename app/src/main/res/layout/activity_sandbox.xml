@@ -13,20 +13,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/ide_background_color"
-            android:clickable="false">
+            android:clickable="false"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp">
             <com.bradesco.projetoprogramacao.controller.codeRunner.IdeCodeParser
                 android:id="@+id/editText_code_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/placeholder_codeDIY"
                 android:inputType="textFilter|textMultiLine"
-                android:textColor="@color/white"
                 android:textColorHint="#959595"
                 android:padding="15dp"
                 android:gravity="top"
                 android:textSize="16sp"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical"
+                android:importantForAutofill="no" />
             <FrameLayout
                 android:id="@+id/consoleLayout"
                 android:layout_width="match_parent"
@@ -75,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/round_corners_shape"
-                        android:backgroundTint="@color/ide_background_color"
+                        android:backgroundTint="?android:windowBackground"
                         android:layout_marginTop="25dp"
                         android:padding="10dp"
                         android:layout_marginBottom="35dp">
@@ -84,11 +85,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.8"
-                            android:scrollbarThumbVertical="@drawable/scrollbar"
-                            android:scrollbarThumbHorizontal="@drawable/scrollbar"
-                            android:scrollbarDefaultDelayBeforeFade="5"
+                            android:contentDescription="@string/code_runner"
+                            android:freezesText="true"
                             android:gravity="bottom"
-                            android:freezesText="true"/>
+                            android:scrollbarDefaultDelayBeforeFade="5"
+                            android:scrollbarThumbHorizontal="@drawable/scrollbar"
+                            android:scrollbarThumbVertical="@drawable/scrollbar" />
                     </FrameLayout>
                 </FrameLayout>
             </FrameLayout>

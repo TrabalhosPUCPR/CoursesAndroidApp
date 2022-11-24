@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">ProjetoProgramacao</string>
-    <string name="appTitle">Title</string>
+    <string name="app_name">Puppy Code</string>
+    <string name="appTitle">PuppyCode</string>
     <string name="option1_optionActivity">All available courses</string>
     <string name="option2_optionActivity">Activities to practice</string>
     <string name="option3_optionActivity">Sandbox, do whatever you like!</string>
     <string name="btn_start_learning_optMenu">Start Learning!</string>
     <string name="btn_continue_learning_optMenu">Continue Learning!</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Continue">Continue</string>
     <string name="congratulationsMessage">Good Job!</string>
     <string name="incorrectMessage">Incorrect!\nCorrect answer:\n%s</string>
@@ -25,13 +24,17 @@
     <string name="save">Save</string>
     <string name="settings">Settings</string>
     <string name="play">Play</string>
-    <string name="title_placeholder">Title</string>
     <string name="title_activity_activities_options">ActivitiesOptions</string>
-    <string name="title_code">Code</string>
     <string name="complete">Complete</string>
     <string name="expected_output">Expected output:</string>
     <string name="question">Question</string>
     <string name="title_activity_play">PlayActivity</string>
     <string name="code">Code</string>
     <string name="time_to_practice">Time to practice!</string>
+    <string name="from">From</string>
+    <string name="course">course</string>
+    <string name="your_progress">Your Progress:</string>
+    <string name="courses_completed">courses completed!</string>
+    <string name="finish">Finish</string>
+    <string name="code_runner">Code runner</string>
 </resources>

@@ -23,7 +23,6 @@ import java.util.Objects;
 
 public class ActivitiesList extends AppCompatActivity {
 
-    ActivitiesService service;
     ActivityResultLauncher<Intent> resultLauncher;
     ActivitiesListAdapter adapter;
 
@@ -32,16 +31,9 @@ public class ActivitiesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities_list);
 
-        this.service = new ActivitiesService(this);
-
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == RESULT_OK){
-                int activityId = result.getData().getIntExtra("id", -1);
                 int position = result.getData().getIntExtra("position", -1);
-                ActivitiesService service = new ActivitiesService(this);
-
-
-                service.close();
                 adapter.notifyItemChanged(position);
             }
         });
@@ -64,7 +56,9 @@ public class ActivitiesList extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(RecyclerView.VERTICAL);
         rcvActivities.setLayoutManager(llm);
+        ActivitiesService service = new ActivitiesService(this);
         adapter = new ActivitiesListAdapter(service.getList(), this, resultLauncher);
+        service.close();
         rcvActivities.setAdapter(adapter);
     }
 }

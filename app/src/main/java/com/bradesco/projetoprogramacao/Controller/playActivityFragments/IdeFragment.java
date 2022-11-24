@@ -29,13 +29,14 @@ public class IdeFragment extends Fragment implements PythonCodeFinishListener {
     private Activities activities;
     private ExtendedFloatingActionButton fabFinish;
     private TextView txtViewExpected;
+    private ActivitiesService service;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentActivityIdeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        ActivitiesService service = new ActivitiesService(getContext());
+        service = new ActivitiesService(getContext());
         activities = service.get(PlayActivities.activityId);
 
         IdeCodeParser codeArea = root.findViewById(R.id.editText_code_area);
@@ -68,7 +69,6 @@ public class IdeFragment extends Fragment implements PythonCodeFinishListener {
 
             activities.setCompleted(true);
             service.edit(activities, activities.getId());
-            service.close();
 
             getActivity().finish();
         });
@@ -80,6 +80,7 @@ public class IdeFragment extends Fragment implements PythonCodeFinishListener {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        service.close();
     }
 
     @Override

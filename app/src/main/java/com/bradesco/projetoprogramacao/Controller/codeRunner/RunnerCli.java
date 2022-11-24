@@ -43,7 +43,7 @@ public class RunnerCli extends androidx.appcompat.widget.AppCompatTextView {
         setMovementMethod(new ScrollingMovementMethod());
         setHorizontallyScrolling(true);
         setVerticalScrollBarEnabled(true);
-        setTextColor(getColor(R.id.consoleText));
+        //setTextColor(getColor(R.id.consoleText));
         this.outputtedText = "";
         this.finishListener = null;
         setOnLongClickListener(view -> {
