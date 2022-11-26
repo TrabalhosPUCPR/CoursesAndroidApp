@@ -173,6 +173,11 @@ public class Course {
         pages.add(new Page("Thank you for using PuppyCode, and wish you good studies!"));
         chapters.get(4).setPages(pages);
 
+        //activity
+        ArrayList<Activities> activities = new ArrayList<>();
+        Page activityPage = new Page("Using the print function, print \"Hello World\" in the terminal, simply type print(), and inside the parenthesis, between two \", type Hello World. This way, you will understand the basics of completing an activity.");
+        activities.add(new Activities("Printing", "Learn how to print in the terminal and complete an activity!", "Hello World\n", 1, activityPage));
+        intro.setActivities(activities);
         intro.setChapters(chapters);
         return intro;
     }
@@ -267,13 +272,7 @@ public class Course {
         loops.setEndingQuestions(questions);
 
         ArrayList<Activities> activities = new ArrayList<>();
-        Page page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using, this time, a recursive function");
-        activities.add(new Activities("Recursive loops", "Simple activity to practice recursive functions", "12345", 2, page));
-
-        page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using, this time, a for loop");
-        activities.add(new Activities("For Looping", "Simple activity to practice for loops", "12345", 1, page));
-
-        page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using a simple while loop");
+        Page page = new Page("Using loops, one can print many lines using very few lines of code, with the knowledge you obtained in this course, print the numbers from 1 to 5 using a simple while loop");
         activities.add(new Activities("While Looping", "Simple activity to practice while loops", "12345", 1, page));
 
         loops.setActivities(activities);
