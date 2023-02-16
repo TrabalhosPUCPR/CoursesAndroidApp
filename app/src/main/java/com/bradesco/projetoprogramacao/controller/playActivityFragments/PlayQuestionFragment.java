@@ -9,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.FragmentActivityQuestionBinding;
 import com.bradesco.projetoprogramacao.model.services.localServices.ActivitiesService;
 import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;

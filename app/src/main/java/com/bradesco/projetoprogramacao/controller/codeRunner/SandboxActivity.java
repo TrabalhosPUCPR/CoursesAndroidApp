@@ -6,24 +6,15 @@ import androidx.core.content.ContextCompat;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.method.ScrollingMovementMethod;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.databinding.ActivitySandboxBinding;
-import com.chaquo.python.PyException;
-import com.chaquo.python.PyObject;
-import com.chaquo.python.Python;
-import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class SandboxActivity extends AppCompatActivity{
 

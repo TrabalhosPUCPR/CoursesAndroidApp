@@ -11,12 +11,7 @@ import android.widget.TextView;
 
 import com.bradesco.projetoprogramacao.R;
 import com.bradesco.projetoprogramacao.controller.codeRunner.SandboxActivity;
-import com.bradesco.projetoprogramacao.controller.courseFragments.CourseActivity;
-import com.bradesco.projetoprogramacao.model.course.Course;
 import com.bradesco.projetoprogramacao.model.services.localServices.CourseService;
-
-import java.util.List;
-import java.util.Objects;
 
 public class OptionsActivity extends AppCompatActivity {
 
